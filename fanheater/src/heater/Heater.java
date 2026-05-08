@@ -22,10 +22,7 @@ public class Heater {
         active = false;
     }
 
-    /**
-     * Updates the current temperature of the room by fetching it from the sensor
-     */
-    public void updateCurrentRoomTemperature() {
+    private void updateCurrentRoomTemperature() {
         currentRoomTemperature = temperatureSensor.readCurrentTemperature();
     }
 
@@ -41,18 +38,32 @@ public class Heater {
         }
     }
 
+    /**
+     * Changes the target temperature to a new value
+     * @param targetTemperature new value
+     */
     public void setTargetTemperature(double targetTemperature) {
         this.targetTemperature = targetTemperature;
     }
 
+    /**
+     * Activates the heater
+     */
     public void activate() {
         active = true;
     }
 
+    /**
+     * Deactivates the heater
+     */
     public void deactivate() {
         active = false;
     }
 
+    /**
+     * Checks if the heater is activated
+     * @return if active
+     */
     public boolean getActive() {
         return active;
     }

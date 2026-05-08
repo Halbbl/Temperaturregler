@@ -10,7 +10,7 @@ import fanheater.src.simulation.TemperatureSimulation;
 public class Main {
 
 
-    public static final int UPDATE_INTERVAL_MS = 1000; // Update interval in milliseconds
+    private static final int UPDATE_INTERVAL_MS = 1000; // Update interval in milliseconds
 
     /**
      * Main method which starts the fan heater and initializes all needed classes and variables
