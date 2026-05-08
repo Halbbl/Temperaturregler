@@ -4,9 +4,18 @@ import fanheater.src.manager.HeatingManager;
 import fanheater.src.sensor.TemperatureSensor;
 import fanheater.src.simulation.TemperatureSimulation;
 
+/**
+ * Main class for starting the fan heater
+ */
 public class Main {
 
+
     public static final int UPDATE_INTERVAL_MS = 1000; // Update interval in milliseconds
+
+    /**
+     * Main method which starts the fan heater and initializes all needed classes and variables
+     * @param args
+     */
     public static void main(String[] args) {
 
         double initialRoomTemperature = 18.0; // Initial room temperature in °C

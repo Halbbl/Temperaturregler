@@ -1,6 +1,9 @@
 package fanheater.src.heater;
 import fanheater.src.sensor.TemperatureSensor;
 
+/**
+ * Heater class for heating the room
+ */
 public class Heater {
 
     private double currentRoomTemperature;
@@ -8,17 +11,28 @@ public class Heater {
     private boolean active;
     private final TemperatureSensor temperatureSensor;
 
+    /**
+     * Constructor of Heater
+     * @param temperatureSensor the embedded Temperature Sensor
+     * @param targetTemperature the wanted Room Temperature of the user
+     */
     public Heater(TemperatureSensor temperatureSensor, double targetTemperature) {
         this.temperatureSensor = temperatureSensor;
         this.targetTemperature = targetTemperature;
         active = false;
     }
 
+    /**
+     * Updates the current temperature of the room by fetching it from the sensor
+     */
     public void updateCurrentRoomTemperature() {
         currentRoomTemperature = temperatureSensor.readCurrentTemperature();
     }
 
-    public void heat(){
+    /**
+     * Checking if activation is needed based on room temperature
+     */
+    public void checkForActivation(){
         updateCurrentRoomTemperature();
         if (currentRoomTemperature < targetTemperature) {
             activate();

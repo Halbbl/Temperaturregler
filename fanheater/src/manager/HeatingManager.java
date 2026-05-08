@@ -16,7 +16,7 @@ public class HeatingManager {
     }
 
     public void update(){
-        heater.heat();
+        heater.checkForActivation();
         temperatureSimulation.updateTemperature(heater.getActive());
     }
 }
