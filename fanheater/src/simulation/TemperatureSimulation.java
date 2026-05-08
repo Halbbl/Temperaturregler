@@ -6,15 +6,19 @@ package fanheater.src.simulation;
 public class TemperatureSimulation {
 
     private double currentRoomTemperature;
-    private final double temperatureIncreaseRate = 0.5; // Rate at which the temperature increases when heating
-    private final double temperatureDecreaseRate = 0.1; // Rate at which the temperature decreases when not heating
+    private final double temperatureIncreaseRate;
+    private final double temperatureDecreaseRate;
 
     /**
      * Constructure of temperature simulator
-     * @param currentRoomTemperature given starting room temperature
+     * @param currentRoomTemperature starting room temperature
+     * @param temperatureIncreaseRate Rate at which the temperature increases when heating
+     * @param temperatureDecreaseRate Rate at which the temperature decreases when not heating
      */
-    public TemperatureSimulation(double currentRoomTemperature) {
+    public TemperatureSimulation(double currentRoomTemperature, double temperatureIncreaseRate, double temperatureDecreaseRate) {
         this.currentRoomTemperature = currentRoomTemperature;
+        this.temperatureIncreaseRate = temperatureIncreaseRate;
+        this.temperatureDecreaseRate = temperatureDecreaseRate;
     }
 
     /**
@@ -23,9 +27,9 @@ public class TemperatureSimulation {
      */
     public void updateTemperature(boolean isHeating) {
         if (isHeating) {
-            currentRoomTemperature += temperatureIncreaseRate; // Increase temperature by the increase rate when heating
+            currentRoomTemperature += temperatureIncreaseRate;
         } else {
-            currentRoomTemperature -= temperatureDecreaseRate; // Decrease temperature by the decrease rate when not heating
+            currentRoomTemperature -= temperatureDecreaseRate;
         }
     }
 

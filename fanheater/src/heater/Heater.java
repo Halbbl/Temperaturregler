@@ -10,15 +10,21 @@ public class Heater {
     private double targetTemperature;
     private boolean active;
     private final TemperatureSensor temperatureSensor;
+    private double temperatureIncreaseRate;
+    private double temperatureDecreaseRate;
 
     /**
      * Constructor of Heater
      * @param temperatureSensor the embedded Temperature Sensor
      * @param targetTemperature the wanted Room Temperature of the user
+     * @param temperatureIncreaseRate Rate at which the temperature increases when heating
+     * @param temperatureDecreaseRate Rate at which the temperature decreases when not heating
      */
-    public Heater(TemperatureSensor temperatureSensor, double targetTemperature) {
+    public Heater(TemperatureSensor temperatureSensor, double targetTemperature, double temperatureIncreaseRate, double temperatureDecreaseRate) {
         this.temperatureSensor = temperatureSensor;
         this.targetTemperature = targetTemperature;
+        this.temperatureIncreaseRate = temperatureIncreaseRate;
+        this.temperatureDecreaseRate = temperatureDecreaseRate;
         active = false;
     }
 
@@ -31,7 +37,7 @@ public class Heater {
      */
     public void checkForActivation(){
         updateCurrentRoomTemperature();
-        if (currentRoomTemperature < targetTemperature) {
+        if (currentRoomTemperature < targetTemperature - temperatureIncreaseRate) {
             activate();
         } else {
             deactivate();
@@ -46,17 +52,11 @@ public class Heater {
         this.targetTemperature = targetTemperature;
     }
 
-    /**
-     * Activates the heater
-     */
-    public void activate() {
+    private void activate() {
         active = true;
     }
 
-    /**
-     * Deactivates the heater
-     */
-    public void deactivate() {
+    private void deactivate() {
         active = false;
     }
 
