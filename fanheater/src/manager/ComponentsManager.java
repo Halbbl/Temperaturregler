@@ -18,6 +18,7 @@ public class ComponentsManager {
     /**
      * Constructur for heating manager
      * @param heater the heater
+     * @param temperatureSensor sensor
      * @param temperatureSimulation the temperature simulation for testing without the hardware
      */
     public ComponentsManager(Heater heater, TemperatureSensor temperatureSensor, TemperatureSimulation temperatureSimulation) {
@@ -29,25 +30,33 @@ public class ComponentsManager {
     }
 
     /**
-     * lets the heater check if it needs to activate and signals the temperature simulator if the temperature needs to increase or decrease
+     * checks if heater needs to be activated and updates the temperature simulation
      */
     public void update(){
         checkForActivationHeater();
         temperatureSimulation.updateTemperature(heater.getActive());
     }
 
+    /**
+     * Gets the current room temperature
+     * @return currents room temperature
+     */
     public double getCurrentRoomTemperature() {
         currentRoomTemperature = temperatureSensor.readCurrentTemperature();
         return currentRoomTemperature;
     }
 
+    /**
+     * Updates the target temperature
+     * @param newTargetTemperature new target temperature
+     */
     public void updateForTargetTemperature(double newTargetTemperature) {
         if (newTargetTemperature != targetTemperature) {
             targetTemperature = newTargetTemperature;
         }
     }
 
-    public void checkForActivationHeater(){
+    private void checkForActivationHeater(){
         if (getCurrentRoomTemperature() < targetTemperature - heater.getTemperatureIncreaseRate()){
             heater.activate();
         } else {
