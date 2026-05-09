@@ -1,0 +1,12 @@
+# Design 
+
+## Klassendiagramm
+
+Das Klassendiagramm wurde mit IntelliJ Idea Diagramm Generierung nach der finalen Implementierung
+der ersten Iteration erzeugt. Dabei wurden sowohl die public als auch die private Methoden und
+Variablen eingeblendet, um den Zusammenhang zwischen den Klassen besser sichtbar zu machen.
+
+![Klassendiagramm1](fanheater/references/umlDiagram1.png)
+
+## Zustandsdiagramm Knopfinteraktion
+
