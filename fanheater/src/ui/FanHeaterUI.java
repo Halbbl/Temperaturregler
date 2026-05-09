@@ -10,8 +10,6 @@ import java.awt.*;
  */
 public class FanHeaterUI {
 
-    private final ComponentsManager componentsManager;
-
     private double targetTemperature;
 
     /**
@@ -19,8 +17,6 @@ public class FanHeaterUI {
      * @param componentsManager manager
      */
     public FanHeaterUI(ComponentsManager componentsManager) {
-
-        this.componentsManager = componentsManager;
 
         JFrame frame = new JFrame("Heizlüfter");
         frame.setSize(400, 250);
@@ -44,7 +40,7 @@ public class FanHeaterUI {
         JPanel inputPanel = new JPanel();
 
         JLabel targetInput =
-                new JLabel("Temperatureingae:");
+                new JLabel("Temperatureingabe:");
 
         JTextField temperatureField =
                 new JTextField(5);

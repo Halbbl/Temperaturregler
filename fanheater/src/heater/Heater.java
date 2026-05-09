@@ -1,5 +1,4 @@
 package fanheater.src.heater;
-import fanheater.src.sensor.TemperatureSensor;
 
 /**
  * Heater class for heating the room

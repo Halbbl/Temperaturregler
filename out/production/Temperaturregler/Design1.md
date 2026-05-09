@@ -7,6 +7,3 @@ der ersten Iteration erzeugt. Dabei wurden sowohl die public als auch die privat
 Variablen eingeblendet, um den Zusammenhang zwischen den Klassen besser sichtbar zu machen.
 
 ![Klassendiagramm1](fanheater/references/umlDiagram1.png)
-
-## Zustandsdiagramm Knopfinteraktion
-

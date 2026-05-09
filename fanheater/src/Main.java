@@ -10,34 +10,32 @@ import fanheater.src.ui.FanHeaterUI;
  */
 public class Main {
 
-
-    private static final int UPDATE_INTERVAL_MS = 1000;
-    private static final double TEMPERATURE_INCREASE_RATE = 0.1;
-    private static final double TEMPERATURE_DECREASE_RATE = 0.02;
-    private static final double initialRoomTemperature = 18.0;
-
-    private static TemperatureSimulation temperatureSimulation;
-    private static TemperatureSensor temperatureSensor;
-    private static FanHeaterUI fanHeaterUI;
-    private static Heater heater;
-    private static ComponentsManager componentsManager;
-
     /**
      * Main method which starts the fan heater and initializes all needed classes and variables
      * @param args
      */
     public static void main(String[] args) {
 
-        temperatureSimulation = new TemperatureSimulation(initialRoomTemperature, TEMPERATURE_INCREASE_RATE, TEMPERATURE_DECREASE_RATE);
+        final int UPDATE_INTERVAL_MS = 1000;
+        final double TEMPERATURE_INCREASE_RATE = 0.1;
+        final double TEMPERATURE_DECREASE_RATE = 0.02;
+        final double INITIAL_ROOM_TEMPERATURE = 18.0;
+
+        TemperatureSimulation temperatureSimulation;
+        TemperatureSensor temperatureSensor;
+        Heater heater;
+        ComponentsManager componentsManager;
+
+        temperatureSimulation = new TemperatureSimulation(INITIAL_ROOM_TEMPERATURE, TEMPERATURE_INCREASE_RATE, TEMPERATURE_DECREASE_RATE);
         temperatureSensor = new TemperatureSensor(temperatureSimulation);
         heater = new Heater(TEMPERATURE_INCREASE_RATE, TEMPERATURE_DECREASE_RATE);
         componentsManager = new ComponentsManager(heater, temperatureSensor, temperatureSimulation);
-        componentsManager.updateForTargetTemperature(initialRoomTemperature);
-        fanHeaterUI = new FanHeaterUI(componentsManager);
+        componentsManager.updateForTargetTemperature(INITIAL_ROOM_TEMPERATURE);
+
+        new FanHeaterUI(componentsManager);
 
         while (true) {
             componentsManager.update();
-            System.out.println("Current Room Temperature: " + Math.round(componentsManager.getCurrentRoomTemperature() * 10.0) / 10.0 + "°C");
             try {
                 Thread.sleep(UPDATE_INTERVAL_MS);
             } catch (InterruptedException e) {

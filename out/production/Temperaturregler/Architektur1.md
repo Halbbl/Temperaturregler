@@ -24,14 +24,14 @@
 
 ## Technologiestack
 
-| Kategorie                | Technologie / Tool | Begründung                                                                                       |
-|--------------------------|--------------------|--------------------------------------------------------------------------------------------------|
-| Sprache                  | Java Temurin 21    | familiärität, persönliche Erfahrung -> einfache wartbarkeit,                                     |
-| Buildsystem              | --keins--          | kein Build                                                                                       |
-| Versionskontrolle        | Git + GitHub       | Standard                                                                                         |
-| IDE                      | IntelliJ           | Übersichtlich, modular                                                                           |
-| Ausgabe                  | Konsole  + Swing   | Einfache, fast responsive Lösung                                                                 |
-| Dokumentation            | Markdown           | Einfache ...                                                                                     |
-| Codeanalyse              | MetricsReloaded    | CI/CD integrierbar, ideal für Clean Code, Integration mit Github ermöglicht automatische Prüfung |
-| Test-Framework           | JUnit              | Standard für Java, einfach, erweiterbar                                                          |
-| Frameworks, Bibliotheken |                    |                                                                                                  |
+| Kategorie                | Technologie / Tool | Begründung                                                   |
+|--------------------------|--------------------|--------------------------------------------------------------|
+| Sprache                  | Java Temurin 21    | familiärität, persönliche Erfahrung -> einfache wartbarkeit, |
+| Buildsystem              | --keins--          | kein Build                                                   |
+| Versionskontrolle        | Git + GitHub       | Standard                                                     |
+| IDE                      | IntelliJ Idea      | Übersichtlich, modular                                       |
+| Ausgabe                  | Konsole  + Swing   | Einfache, fast responsive Lösung                             |
+| Dokumentation            | Markdown           | Einfache ...                                                 |
+| Codeanalyse              | Sonar Qube         | IntelliJ Idea Plugin, einfache Bedienung                     |
+| Test-Framework           | JUnit              | Standard für Java, einfach, erweiterbar                      |
+| Frameworks, Bibliotheken |                    |                                                              |
