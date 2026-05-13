@@ -7,6 +7,7 @@ Funktionen berücksichtigt:
 - Messen der Raumtemperatur
 - Eingabemöglichkeit der gewünschten Temperatur für den Nutzer
 - Visualisierung der Daten auf einfacher Benutzeroberfläche
+- Eigenständige Steuerung des Geräts ohne externes Eingreifen
 
 Diese Funktionen wurden hinsichtlich der realistisches Nutzung des Endprodukts ausgewählt. 
 Dabei wurde besonders auf die Erweiterbarkeit und Gestaltung einer stabilen Basis für
@@ -18,9 +19,9 @@ das spätere Arbeiten geachtet.
 
 **Logik:**
 
-Req. 1.1: Automatisches aktivieren des Heizlüfters wenn Raumtemperatur max. 2°C kälter ist als gewünschte Temperatur  <br>
+Req. 1.1: Automatisches aktivieren des Heizlüfters wenn Raumtemperatur max. 1°C kälter ([Quelle](./RechercheErgbnisse.md)) ist als gewünschte Temperatur  <br>
 Req. 1.2: Automatisches deaktivieren des Heizlüfters bei erreichen der gewünschten Temperatur <br>
-Req. 1.3: Halten der gewünschten Temperatur mit Schwankungen bis max. 2°C <br>
+Req. 1.3: Halten der gewünschten Temperatur mit Schwankungen bis max. 1°C ([Quelle](./RechercheErgbnisse.md)) <br>
 Req. 1.4: Strickte Trennung der zentralen Logikkomponente vom restlichen Code
 
 
@@ -40,7 +41,7 @@ Req. 1.9: Abfangen von nicht genemigten Input Variablen (!double) <br>
 
 **Ziel:** 
 
-- Grundlegende Logik implementieren
+- Zentrale Logikeinheit implementieren
 - Temperaturmessung und anzeigen dieser
 - Nutzereingabe verarbeiten
 - Einfache Benutzeroberfläche erstellen
@@ -135,3 +136,11 @@ gleichzeitig nachvollziehbar dokumentiert wurde.
 ### 5. Testing
 
 ...
+
+### 6. Review
+
+**Was lief gut?**
+
+**Was lief nicht so gut?**
+
+**Lessions learned:**

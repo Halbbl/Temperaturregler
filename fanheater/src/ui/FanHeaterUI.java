@@ -19,7 +19,7 @@ public class FanHeaterUI {
     public FanHeaterUI(ComponentsManager componentsManager) {
 
         JFrame frame = new JFrame("Heizlüfter");
-        frame.setSize(400, 250);
+        frame.setSize(400, 450);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout(4, 1, 10, 10));
 
@@ -37,24 +37,61 @@ public class FanHeaterUI {
                         SwingConstants.CENTER
                 );
 
+
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BorderLayout());
+
         JPanel inputPanel = new JPanel();
 
         JLabel targetInput =
                 new JLabel("Temperatureingabe:");
 
         JTextField temperatureField =
-                new JTextField(5);
+                new JTextField(10);
 
         inputPanel.add(targetInput);
         inputPanel.add(temperatureField);
 
+        centerPanel.add(inputPanel, BorderLayout.NORTH);
+
+
+        JPanel keypadPanel = new JPanel();
+        keypadPanel.setLayout(new GridLayout(4,3,5,5));
+
+        String[] buttons = {
+                "1", "2", "3",
+                "4", "5", "6",
+                "7", "8", "9",
+                ".", "0", "⌫"
+        };
+
+        for (String text : buttons) {
+            JButton button = new JButton(text);
+            button.addActionListener(e -> {
+                if (text.equals("⌫")) {
+                    String current = temperatureField.getText();
+
+                    if (!current.isEmpty()) {
+                        temperatureField.setText(current.substring(0, current.length() - 1));
+                    }
+                } else {
+                    temperatureField.setText(temperatureField.getText() + text);
+                }
+            });
+            keypadPanel.add(button);
+        }
+
+        centerPanel.add(keypadPanel, BorderLayout.CENTER);
+
+        JPanel saveButtonPanel = new JPanel();
         JButton setTargetTemperatureButton =
                 new JButton("Speichern");
+        saveButtonPanel.add(setTargetTemperatureButton);
 
         frame.add(title);
         frame.add(currentTemperature);
-        frame.add(inputPanel);
-        frame.add(setTargetTemperatureButton);
+        frame.add(centerPanel);
+        frame.add(saveButtonPanel);
 
         setTargetTemperatureButton.addActionListener(e -> {
 
@@ -67,17 +104,19 @@ public class FanHeaterUI {
 
                 componentsManager.updateForTargetTemperature(targetTemperature);
 
-                frame.remove(inputPanel);
-                frame.remove(setTargetTemperatureButton);
+                frame.remove(centerPanel);
+                frame.remove(saveButtonPanel);
 
+                JPanel changeButtonPanel = new JPanel();
                 JButton changeTargetTemperatureButton = new JButton("Temperatur ändern");
-                frame.add(changeTargetTemperatureButton);
+                changeButtonPanel.add(changeTargetTemperatureButton);
+                frame.add(changeButtonPanel);
 
                 changeTargetTemperatureButton.addActionListener(returnToInput -> {
-                    frame.remove(changeTargetTemperatureButton);
-                    frame.add(inputPanel);
+                    frame.remove(changeButtonPanel);
+                    frame.add(centerPanel, BorderLayout.CENTER);
 
-                    frame.add(setTargetTemperatureButton);
+                    frame.add(saveButtonPanel, BorderLayout.CENTER);
 
                     frame.revalidate();
                     frame.repaint();

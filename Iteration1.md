@@ -143,4 +143,4 @@ gleichzeitig nachvollziehbar dokumentiert wurde.
 
 **Was lief nicht so gut?**
 
-+*Lessions learned:**
+**Lessions learned:**
