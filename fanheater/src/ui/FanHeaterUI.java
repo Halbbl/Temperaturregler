@@ -147,7 +147,6 @@ public class FanHeaterUI {
                 );
             }
         });
-
         frame.setVisible(true);
     }
 }
