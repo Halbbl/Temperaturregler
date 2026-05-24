@@ -15,23 +15,23 @@
 
 ### Verantwortlichkeiten der Komponenten
 
-| **Komponente**    | **Rolle**                  | **Verantwortlichkeiten**                           |
-|-------------------|----------------------------|----------------------------------------------------|
-| UserInterface     | Präsentationsschicht       | Tempraturanzeige, User-Interaktionen               |
-| Logic             | Business-Logik             | Heater (de-)aktivieren, User-Interaktionen handeln |
-| HardwareComonents | Hardware-Interface         | Zugriff auf Sensoren / Simulatoren                 |
+| **Komponente**     | **Rolle**                  | **Verantwortlichkeiten**                           |
+|--------------------|----------------------------|----------------------------------------------------|
+| UserInterface      | Präsentationsschicht       | Tempraturanzeige, User-Interaktionen               |
+| Logic              | Business-Logik             | Heater (de-)aktivieren, User-Interaktionen handeln |
+| HardwareComponents | Hardware-Interface         | Zugriff auf Sensoren / Simulatoren                 |
 
 
 ## Technologiestack
 
-| Kategorie                | Technologie / Tool | Begründung                                                   |
-|--------------------------|--------------------|--------------------------------------------------------------|
-| Sprache                  | Java Temurin 21    | familiärität, persönliche Erfahrung -> einfache wartbarkeit, |
-| Buildsystem              | --keins--          | kein Build                                                   |
-| Versionskontrolle        | Git + GitHub       | Standard                                                     |
-| IDE                      | IntelliJ Idea      | Übersichtlich, modular                                       |
-| Ausgabe                  | Konsole  + Swing   | Einfache, fast responsive Lösung                             |
-| Dokumentation            | Markdown           | Einfache ...                                                 |
-| Codeanalyse              | Sonar Qube         | IntelliJ Idea Plugin, einfache Bedienung                     |
-| Test-Framework           | JUnit              | Standard für Java, einfach, erweiterbar                      |
-| Frameworks, Bibliotheken |                    |                                                              |
+| Kategorie                | Technologie / Tool | Begründung                                                       |
+|--------------------------|--------------------|------------------------------------------------------------------|
+| Sprache                  | Java Temurin 21    | familiärität, persönliche Erfahrung                              |
+| Buildsystem              | --keins--          | kein Build                                                       |
+| Versionskontrolle        | Git + GitHub       | Standard                                                         |
+| IDE                      | IntelliJ Idea      | Übersichtlich, modular                                           |
+| Ausgabe                  | Konsole  + Swing   | Einfache, fast responsive Lösung                                 |
+| Dokumentation            | Markdown           | Einfache und schnelle Dokumentation + gute Anbindung in IntelliJ |
+| Codeanalyse              | Sonar Qube         | IntelliJ Idea Plugin, einfache Bedienung                         |
+| Test-Framework           | JUnit              | Standard für Java, einfach, erweiterbar                          |
+| Frameworks, Bibliotheken |                    |                                                                  |

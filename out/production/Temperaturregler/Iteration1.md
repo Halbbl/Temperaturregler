@@ -31,7 +31,7 @@ Req. 1.5: Anzeige der aktuellen Raumtemperatur <br>
 Req. 1.6: Möglichkeit zum ändern der gewünschten Temperatur <br>
 Req. 1.7: Ändern der Benutzeroberfläche bei Interaktion des Nutzers <br>
 Req. 1.8: Intuitive Benutzeroberfläche <br>
-Req. 1.9: Abfangen von nicht genemigten Input Variablen (!double) <br>
+Req. 1.9: Abfangen von nicht genehmigten Input Variablen <br>
 
 ---
 
@@ -135,7 +135,30 @@ gleichzeitig nachvollziehbar dokumentiert wurde.
 
 ### 5. Testing
 
-...
+Req. 1.1 bis 1.3: </br>
+Das Testen der automatischen Aktivierung, Deaktivierung sowie des Haltens der Temperature wurde über 
+verschiedene und mehrfache Eingaben von Temperaturen getestet. Hierfür wurden sowohl höhere als auch
+niedrigere Temperaturen als die initiale Temperatur verwendet. Dabei wurde darauf geachtet, dass sich 
+die simulierte Temperatur immer der gewünschten annähert. </br>
+Insgesamt wurden für diesen Test ca. 30 Eingaben in 5 verschiedenen Instanzen getätigt.
+
+Req. 1.5 bis 1.7: </br>
+Um das Anzeigen der aktuellen Temperatur, die Eingabe des Nutzers und das Ändern der UI zu testen wurden
+die für den ersten Test genannten Eingaben über die UI durchgeführt. Dabei wurde darauf geachtet, dass
+der "Temperatur ändern" sowie der "Speichern" Knopf funktionieren und das Eingabefeld mit Tastatur sowie 
+mit dem angezeigten Keypad funktioniert. </br>
+Hierfür wurden 15 Eingaben mit der Tastatur und 15 mit dem Touchpad gemacht, wobei jede Zahl mindestens
+einmal verwendet wurde.
+
+Req 1.9: </br>
+Das Abfangen nicht genehmigter Eingaben wie Buchstaben oder negative Zahlen wurde durch das gezielte Eingeben
+dieser getestet. Hierfür wurde versucht, auf der Tastatur Wörter oder Zahlen kleiner 0 einzugeben. Da dies 
+sofort von einem KeyListener abgefangen wird, wurden diese Eingaben nicht einmal im Input Feld angezeigt.
+Die Eingabe auf dem Keypad wurde dadurch verhindert, dass darauf nur valide Zahlen angezeigt werden. </br>
+
+
+Weitere Tests:
+
 
 ### 6. Review
 

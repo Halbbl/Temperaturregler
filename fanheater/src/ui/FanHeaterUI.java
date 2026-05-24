@@ -29,10 +29,11 @@ public class FanHeaterUI {
 
         title.setFont(new Font("Arial", Font.BOLD, 20));
 
+        //displays the currents temperature when heater is turned on
         JLabel currentTemperature =
                 new JLabel(
                         "Aktuelle Temperatur: "
-                                + componentsManager.getCurrentRoomTemperature()
+                                + Math.round(componentsManager.getCurrentRoomTemperature()*10.0)/10.0
                                 + "°C",
                         SwingConstants.CENTER
                 );
@@ -49,12 +50,32 @@ public class FanHeaterUI {
         JTextField temperatureField =
                 new JTextField(10);
 
+        // blocks chars and negative numbers for the input
+        temperatureField.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent e) {
+                char c = e.getKeyChar();
+
+                // Valid: Numbers, dot and backspace
+                if (!Character.isDigit(c)
+                        && c != '.'
+                        && c != '\b') {
+                    e.consume();
+                }
+
+                // just ONE dot
+                if (c == '.' && temperatureField.getText().contains(".")) {
+                    e.consume();
+                }
+            }
+        });
+
         inputPanel.add(targetInput);
         inputPanel.add(temperatureField);
 
         centerPanel.add(inputPanel, BorderLayout.NORTH);
 
-
+        //the keypad
         JPanel keypadPanel = new JPanel();
         keypadPanel.setLayout(new GridLayout(4,3,5,5));
 
@@ -93,6 +114,7 @@ public class FanHeaterUI {
         frame.add(centerPanel);
         frame.add(saveButtonPanel);
 
+        // after saving let change temperature button appear and save button disappear
         setTargetTemperatureButton.addActionListener(e -> {
 
             try {
@@ -104,6 +126,7 @@ public class FanHeaterUI {
 
                 componentsManager.updateForTargetTemperature(targetTemperature);
 
+                //remove input field and save button
                 frame.remove(centerPanel);
                 frame.remove(saveButtonPanel);
 
@@ -112,6 +135,7 @@ public class FanHeaterUI {
                 changeButtonPanel.add(changeTargetTemperatureButton);
                 frame.add(changeButtonPanel);
 
+                //when change temperature is pressed let input field and save button appear
                 changeTargetTemperatureButton.addActionListener(returnToInput -> {
                     frame.remove(changeButtonPanel);
                     frame.add(centerPanel, BorderLayout.CENTER);
@@ -129,7 +153,7 @@ public class FanHeaterUI {
 
                     double currentTemp =
                             componentsManager.getCurrentRoomTemperature();
-
+                    //round temperature for better ux
                     currentTemperature.setText(
                             "Aktuelle Temperatur: "
                                     + Math.round(currentTemp * 10.0) / 10.0

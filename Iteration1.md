@@ -31,7 +31,7 @@ Req. 1.5: Anzeige der aktuellen Raumtemperatur <br>
 Req. 1.6: Möglichkeit zum ändern der gewünschten Temperatur <br>
 Req. 1.7: Ändern der Benutzeroberfläche bei Interaktion des Nutzers <br>
 Req. 1.8: Intuitive Benutzeroberfläche <br>
-Req. 1.9: Abfangen von nicht genemigten Input Variablen (!double) <br>
+Req. 1.9: Abfangen von nicht genehmigten Input Variablen <br>
 
 ---
 
@@ -135,12 +135,57 @@ gleichzeitig nachvollziehbar dokumentiert wurde.
 
 ### 5. Testing
 
-...
+Req. 1.1 bis 1.3: <br>
+Das Testen der automatischen Aktivierung, Deaktivierung sowie des Haltens der Temperature wurde über 
+verschiedene und mehrfache Eingaben von Temperaturen getestet. Hierfür wurden sowohl höhere als auch
+niedrigere Temperaturen als die initiale Temperatur verwendet. Dabei wurde darauf geachtet, dass sich 
+die simulierte Temperatur immer der gewünschten annähert. <br>
+Insgesamt wurden für diesen Test ca. 30 Eingaben in 5 verschiedenen Instanzen getätigt.
+
+Req. 1.5 bis 1.7: <br>
+Um das Anzeigen der aktuellen Temperatur, die Eingabe des Nutzers und das Ändern der UI zu testen wurden
+die für den ersten Test genannten Eingaben über die UI durchgeführt. Dabei wurde darauf geachtet, dass
+der "Temperatur ändern" sowie der "Speichern" Knopf funktionieren und das Eingabefeld mit Tastatur sowie 
+mit dem angezeigten Keypad funktioniert. <br>
+Hierfür wurden 15 Eingaben mit der Tastatur und 15 mit dem Touchpad gemacht, wobei jede Zahl mindestens
+einmal verwendet wurde.
+
+Req 1.9: <br>
+Das Abfangen nicht genehmigter Eingaben wie Buchstaben oder negative Zahlen wurde durch das gezielte Eingeben
+dieser getestet. Hierfür wurde versucht, auf der Tastatur Wörter oder Zahlen kleiner 0 einzugeben. Da dies 
+sofort von einem KeyListener abgefangen wird, wurden diese Eingaben nicht einmal im Input Feld angezeigt.
+Die Eingabe auf dem Keypad wurde dadurch verhindert, dass darauf nur valide Zahlen angezeigt werden. <br>
+Das Eingeben einer Zahl mit mehreren Punkten (bsp. 19.0.3) wurde auf der Tastatur wieder mit dem KeyListener
+abgefangen. Auf dem Keypad ist diese Eingabe zwar möglich, führt aber zum Exception Catch und zeigt dadurch 
+eine Fehlermeldung an. <br>
+Für diesen Test wurden 20 Eingaben in 4 verschiedenen Instanzen gemacht.
+
+
 
 ### 6. Review
 
-**Was lief gut?**
+**Was lief gut?** <br>
+Die Implementierung der grundlegenden Logik sowie der verschiedenen Schnittstellen verlief insgesamt reibungslos 
+und ohne größere Probleme. Besonders die Umsetzung der Kernfunktionen konnte schnell realisiert werden, da die 
+einzelnen Komponenten klar voneinander getrennt waren. Auch die Kommunikation zwischen den verschiedenen Klassen 
+funktionierte nach der Anpassung der Struktur zuverlässig. Dadurch konnte die Anwendung Schritt für Schritt 
+erweitert und getestet werden.
 
-**Was lief nicht so gut?**
+**Was lief nicht so gut?** <br>
+Zu Beginn des Projekts musste der gesamte Code nahezu vollständig umgeschrieben werden, da die ursprüngliche 
+Struktur der Anwendung nicht ausreichend durchdacht war. Die Logik wurde auf mehrere Klassen verteilt, wodurch 
+schnell Unübersichtlichkeit entstand. Zwar war die Idee eines zentralen Managers bereits vorhanden, allerdings 
+wurde dieser Ansatz nicht konsequent genug umgesetzt. Dadurch kam es zu Problemen bei der Kommunikation zwischen 
+den einzelnen Komponenten. <br>
+Zusätzlich wurde der Manager anfangs als oberste Instanz gewählt. Während der weiteren Entwicklung stellte sich 
+jedoch heraus, dass diese Struktur die Implementierung unnötig kompliziert machte. Aus diesem Grund mussten sowohl 
+der Manager als auch die UI-Klasse teilweise überarbeitet und neu strukturiert werden. Dies führte zu zusätzlichem 
+Zeitaufwand, half jedoch dabei, die Architektur der Anwendung besser zu organisieren.
 
-**Lessions learned:**
+**Lessons learned:** <br>
+Durch das Projekt wurde deutlich, wie wichtig eine gute Planung der Klassenstruktur bereits vor Beginn der 
+eigentlichen Implementierung ist. Eine klar definierte Architektur hätte viele spätere Anpassungen und 
+Umstrukturierungen vermeiden können. Außerdem wurde gelernt, dass Konzepte wie ein zentraler Manager nicht nur 
+geplant, sondern auch konsequent umgesetzt werden müssen, damit die Anwendung langfristig übersichtlich und wartbar 
+bleibt.
+
