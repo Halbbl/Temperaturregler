@@ -20,13 +20,15 @@ public class Main {
         final double TEMPERATURE_INCREASE_RATE = 0.1;
         final double TEMPERATURE_DECREASE_RATE = 0.02;
         final double INITIAL_ROOM_TEMPERATURE = 18.0;
+        final double MIN_TEMPERATURE = -50.0;
+        final double MAX_TEMPERATURE = 50.0;
 
         TemperatureSimulation temperatureSimulation;
         TemperatureSensor temperatureSensor;
         Heater heater;
         ComponentsManager componentsManager;
 
-        temperatureSimulation = new TemperatureSimulation(INITIAL_ROOM_TEMPERATURE, TEMPERATURE_INCREASE_RATE, TEMPERATURE_DECREASE_RATE);
+        temperatureSimulation = new TemperatureSimulation(INITIAL_ROOM_TEMPERATURE, TEMPERATURE_INCREASE_RATE, TEMPERATURE_DECREASE_RATE, MIN_TEMPERATURE, MAX_TEMPERATURE);
         temperatureSensor = new TemperatureSensor(temperatureSimulation);
         heater = new Heater(TEMPERATURE_INCREASE_RATE, TEMPERATURE_DECREASE_RATE);
         componentsManager = new ComponentsManager(heater, temperatureSensor, temperatureSimulation);
