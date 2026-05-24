@@ -171,7 +171,7 @@ einzelnen Komponenten klar voneinander getrennt waren. Auch die Kommunikation zw
 funktionierte nach der Anpassung der Struktur zuverlässig. Dadurch konnte die Anwendung Schritt für Schritt 
 erweitert und getestet werden.
 
-**Was lief nicht so gut?** <br>
+**Was lief nicht so gut?** <br> 
 Zu Beginn des Projekts musste der gesamte Code nahezu vollständig umgeschrieben werden, da die ursprüngliche 
 Struktur der Anwendung nicht ausreichend durchdacht war. Die Logik wurde auf mehrere Klassen verteilt, wodurch 
 schnell Unübersichtlichkeit entstand. Zwar war die Idee eines zentralen Managers bereits vorhanden, allerdings 
