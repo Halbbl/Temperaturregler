@@ -1,5 +1,6 @@
 package fanheater.src.manager;
 import fanheater.src.heater.Heater;
+import fanheater.src.heater.HeaterLevel;
 import fanheater.src.sensor.TemperatureSensor;
 import fanheater.src.simulation.TemperatureSimulation;
 
@@ -11,7 +12,6 @@ public class ComponentsManager {
     private final Heater heater;
     private final TemperatureSimulation temperatureSimulation;
     private final TemperatureSensor temperatureSensor;
-
     private double targetTemperature;
     private double currentRoomTemperature;
 
@@ -33,8 +33,8 @@ public class ComponentsManager {
      * checks if heater needs to be activated and updates the temperature simulation
      */
     public void update(){
-        checkForActivationHeater();
-        temperatureSimulation.updateTemperature(heater.getActive());
+        checkForHeatingLevel();
+        temperatureSimulation.updateTemperature(heater.getCurrentLevel());
     }
 
     /**
@@ -56,11 +56,24 @@ public class ComponentsManager {
         }
     }
 
-    private void checkForActivationHeater(){
-        if (getCurrentRoomTemperature() < targetTemperature - heater.getTemperatureIncreaseRate()){
-            heater.activate();
+    private void checkForHeatingLevel(){
+        double difference = targetTemperature - temperatureSensor.readCurrentTemperature();
+
+        if (difference >= 5) {
+
+            heater.setCurrentLevel(HeaterLevel.HIGH);
+
+        } else if (difference >= 2) {
+
+            heater.setCurrentLevel(HeaterLevel.MEDIUM);
+
+        } else if (difference > 0) {
+
+            heater.setCurrentLevel(HeaterLevel.LOW);
+
         } else {
-            heater.deactivate();
+
+            heater.setCurrentLevel(HeaterLevel.OFF);
         }
     }
 }

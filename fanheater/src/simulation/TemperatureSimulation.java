@@ -1,12 +1,13 @@
 package fanheater.src.simulation;
 
+import fanheater.src.heater.HeaterLevel;
+
 /**
  * Simple Temperature simulation for testing without the hardware
  */
 public class TemperatureSimulation {
 
     private double currentRoomTemperature;
-    private final double temperatureIncreaseRate;
     private final double temperatureDecreaseRate;
     private final double minTemperature;
     private final double maxTemperature;
@@ -14,14 +15,12 @@ public class TemperatureSimulation {
     /**
      * Constructure of temperature simulator
      * @param currentRoomTemperature starting room temperature
-     * @param temperatureIncreaseRate Rate at which the temperature increases when heating
      * @param temperatureDecreaseRate Rate at which the temperature decreases when not heating
      * @param minTemperature minimal temperature the simulation can display
      * @param maxTemperature maximal temperature the simulation can display
      */
-    public TemperatureSimulation(double currentRoomTemperature, double temperatureIncreaseRate, double temperatureDecreaseRate, double minTemperature, double maxTemperature) {
+    public TemperatureSimulation(double currentRoomTemperature, double temperatureDecreaseRate, double minTemperature, double maxTemperature) {
         this.currentRoomTemperature = currentRoomTemperature;
-        this.temperatureIncreaseRate = temperatureIncreaseRate;
         this.temperatureDecreaseRate = temperatureDecreaseRate;
         this.minTemperature = minTemperature;
         this.maxTemperature = maxTemperature;
@@ -29,12 +28,12 @@ public class TemperatureSimulation {
 
     /**
      * Updates the temperature depending on if the heater is active or not
-     * @param isHeating indicates if the heater is active
+     * @param currentLevel level at which the heater is heating
      */
-    public void updateTemperature(boolean isHeating) {
-        if (isHeating && currentRoomTemperature < maxTemperature ) {
-            currentRoomTemperature += temperatureIncreaseRate;
-        } else if (!isHeating && currentRoomTemperature > minTemperature) {
+    public void updateTemperature(HeaterLevel currentLevel) {
+        if (!(currentLevel.equals(HeaterLevel.OFF))  && currentRoomTemperature < maxTemperature ) {
+            currentRoomTemperature += currentLevel.getHeatingPower();
+        } else if ((currentLevel.equals(HeaterLevel.OFF)) && currentRoomTemperature > minTemperature) {
             currentRoomTemperature -= temperatureDecreaseRate;
         }
     }

@@ -17,7 +17,6 @@ public class Main {
     public static void main(String[] args) {
 
         final int UPDATE_INTERVAL_MS = 1000;
-        final double TEMPERATURE_INCREASE_RATE = 0.1;
         final double TEMPERATURE_DECREASE_RATE = 0.02;
         final double INITIAL_ROOM_TEMPERATURE = 18.0;
         final double MIN_TEMPERATURE = -50.0;
@@ -28,9 +27,9 @@ public class Main {
         Heater heater;
         ComponentsManager componentsManager;
 
-        temperatureSimulation = new TemperatureSimulation(INITIAL_ROOM_TEMPERATURE, TEMPERATURE_INCREASE_RATE, TEMPERATURE_DECREASE_RATE, MIN_TEMPERATURE, MAX_TEMPERATURE);
+        temperatureSimulation = new TemperatureSimulation(INITIAL_ROOM_TEMPERATURE, TEMPERATURE_DECREASE_RATE, MIN_TEMPERATURE, MAX_TEMPERATURE);
         temperatureSensor = new TemperatureSensor(temperatureSimulation);
-        heater = new Heater(TEMPERATURE_INCREASE_RATE, TEMPERATURE_DECREASE_RATE);
+        heater = new Heater();
         componentsManager = new ComponentsManager(heater, temperatureSensor, temperatureSimulation);
         componentsManager.updateForTargetTemperature(INITIAL_ROOM_TEMPERATURE);
 
