@@ -19,9 +19,9 @@ das spätere Arbeiten geachtet.
 
 **Logik:**
 
-Req. 1.1: Automatisches aktivieren des Heizlüfters wenn Raumtemperatur max. 1°C kälter ([Quelle](./RechercheErgbnisse.md)) ist als gewünschte Temperatur  <br>
+Req. 1.1: Automatisches aktivieren des Heizlüfters wenn Raumtemperatur max. 1°C kälter ([Quelle](RechercheErgbnisse.md)) ist als gewünschte Temperatur  <br>
 Req. 1.2: Automatisches deaktivieren des Heizlüfters bei erreichen der gewünschten Temperatur <br>
-Req. 1.3: Halten der gewünschten Temperatur mit Schwankungen bis max. 1°C ([Quelle](./RechercheErgbnisse.md)) <br>
+Req. 1.3: Halten der gewünschten Temperatur mit Schwankungen bis max. 1°C ([Quelle](RechercheErgbnisse.md)) <br>
 Req. 1.4: Strickte Trennung der zentralen Logikkomponente vom restlichen Code
 
 
@@ -66,7 +66,7 @@ Im zweiten Schritt wurden verschiedene Programmiersprachen gegenüber gestellt, 
 Erstellung des Projekts in Frage kamen. Darunter befanden sich unter anderem Java, Python, C++
 und Rust. Diese wurden in Hinsicht auf die Anforderungen und verschiedenen Schwierigkeitsgrade 
 verglichen, wobei die Wahl letztendlich auf Java viel. Genaueres zum warum befindet sich in 
-[Architektur1](./Architektur1.md). <br>
+[Architektur1](Architektur1.md). <br>
 Zudem wurde die IDE gewählt, wobei die Wahl hinsichtlich auf Java zwischen IntelliJ Idea und 
 Visual Studio Code lag. Hierbei wurde sich für ersteres entschieden. <br>
 Weitere Hilfsmittel wie Markdown und Swing ergaben sich während des Coding-Prozesses und wurden
@@ -83,12 +83,12 @@ klar definierten Aufgaben erkennen.
 
 Im vierten Schritt wurde mit der praktischen Implementierung der zuvor geplanten Architektur 
 und des Designs begonnen. Hierfür wurden zunächst die grundlegenden Klassen erstellt, welche den 
-Kern der Anwendung bilden. Dazu gehörten die Startklasse ([Main](fanheater/src/Main.java)), der 
-Temperatursimulator ([TemperatureSimulation](fanheater/src/simulation/TemperatureSimulation.java)), 
-der Temperatursensor ([TemperatureSensor](fanheater/src/sensor/TemperatureSensor.java)), der 
+Kern der Anwendung bilden. Dazu gehörten die Startklasse ([Main](../fanheater/src/Main.java)), der 
+Temperatursimulator ([TemperatureSimulation](../fanheater/src/simulation/TemperatureSimulation.java)), 
+der Temperatursensor ([TemperatureSensor](../fanheater/src/sensor/TemperatureSensor.java)), der 
 Heizlüfter (Heater), der zentrale Verwaltungsmechanismus 
-([ComponentsManager](fanheater/src/manager/ComponentsManager.java)) sowie die Benutzeroberfläche 
-([FanHeaterUI](fanheater/src/ui/FanHeaterUI.java)). <br>
+([ComponentsManager](../fanheater/src/manager/ComponentsManager.java)) sowie die Benutzeroberfläche 
+([FanHeaterUI](../fanheater/src/ui/FanHeaterUI.java)). <br>
 
 Zu Beginn wurde der Temperatursimulator implementiert, welcher die Änderung der Raumtemperatur 
 simuliert und damit die Grundlage für die weiteren Komponenten darstellt. Anschließend wurde der 
