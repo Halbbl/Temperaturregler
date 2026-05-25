@@ -37,7 +37,7 @@ Req. 1.9: Abfangen von nicht genehmigten Input Variablen <br>
 
 ### Iteration Details
 
-**Zeitraum:** 08.05.2026 - ???
+**Zeitraum:** 08.05.2026 - 23.05.2026
 
 **Ziel:** 
 
@@ -135,7 +135,7 @@ gleichzeitig nachvollziehbar dokumentiert wurde.
 
 ### 5. Testing
 
-Req. 1.1 bis 1.3: <br>
+**Test 1.1: Req. 1.1 bis 1.3** <br>
 Die automatische Aktivierung, Deaktivierung sowie das Halten der Temperatur wurden durch verschiedene 
 und wiederholte Eingaben von Zieltemperaturen getestet. Hierfür wurden sowohl höhere als auch niedrigere 
 Temperaturen als die initiale Raumtemperatur verwendet. Dabei wurde überprüft, ob sich die simulierte 
@@ -143,7 +143,7 @@ Temperatur schrittweise der gewünschten Zieltemperatur annähert und der Heizl�
 Insgesamt wurden für diesen Test etwa 30 Eingaben in 5 verschiedenen Instanzen durchgeführt. Alle Tests 
 verliefen erfolgreich.
 
-Req. 1.5 bis 1.7: <br>
+**Test 1.2: Req. 1.5 bis 1.7:** <br>
 Zur Überprüfung der Anzeige der aktuellen Temperatur, der Benutzereingabe sowie der dynamischen Änderungen 
 der UI wurden die bereits im ersten Test verwendeten Eingaben über die Benutzeroberfläche durchgeführt. Dabei 
 wurde kontrolliert, ob die Buttons „Speichern“ und „Temperatur ändern“ korrekt funktionieren und ob das 
@@ -151,7 +151,7 @@ Eingabefeld sowohl mit der Tastatur als auch mit dem angezeigten Keypad bedient 
 Für diesen Test wurden insgesamt 15 Eingaben über die Tastatur sowie 15 Eingaben über das Keypad durchgeführt, 
 wobei jede Zahl mindestens einmal verwendet wurde. Alle Funktionen arbeiteten wie erwartet.
 
-Req. 1.9: <br>
+**Test 1.3: Req. 1.9:** <br>
 Das Abfangen ungültiger Eingaben, wie Buchstaben oder negativer Zahlen, wurde durch gezielte Fehleingaben 
 getestet. Hierfür wurden über die Tastatur sowohl Wörter als auch Zahlen kleiner als 0 eingegeben. Diese 
 Eingaben wurden unmittelbar durch den verwendeten KeyListener abgefangen und daher nicht im Eingabefeld angezeigt. <br>
