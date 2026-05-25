@@ -11,7 +11,7 @@
 
 ## Komponentendiagramm
 
-![Komponentendiagramm](fanheater/references/Componentsdiagram.png)
+![Komponentendiagramm](../fanheater/references/Componentsdiagram.png)
 
 ### Verantwortlichkeiten der Komponenten
 

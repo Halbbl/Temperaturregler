@@ -19,9 +19,9 @@ Link lol
 
 | **Nummer** | **Beschreibung**                                                                                                                               | **Zugehörigkeit** |
 |------------|------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|
-| 1.1        | Automatisches aktivieren des Heizlüfters wenn Raumtemperatur max. 1°C kälter ([Quelle](./RechercheErgbnisse.md)) ist als gewünschte Temperatur | Logik             |
+| 1.1        | Automatisches aktivieren des Heizlüfters wenn Raumtemperatur max. 1°C kälter ([Quelle](RechercheErgbnisse.md)) ist als gewünschte Temperatur | Logik             |
 | 1.2        | Automatisches deaktivieren des Heizlüfters bei erreichen der gewünschten Temperatur                                                            | Logik             |
-| 1.3        | Halten der gewünschten Temperatur mit Schwankungen bis max. 1°C ([Quelle](./RechercheErgbnisse.md))                                            | Logik             |
+| 1.3        | Halten der gewünschten Temperatur mit Schwankungen bis max. 1°C ([Quelle](RechercheErgbnisse.md))                                            | Logik             |
 | 1.4        | Strickte Trennung der zentralen Logikkomponente vom restlichen Code                                                                            | Logik             |
 | 1.5        | Anzeige der aktuellen Raumtemperatur                                                                                                           | UI                |
 | 1.6        | Möglichkeit zum ändern der gewünschten Temperatur                                                                                              | UI                |
