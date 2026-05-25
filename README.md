@@ -19,9 +19,9 @@ Link lol
 
 | **Nummer** | **Beschreibung**                                                                                                                               | **Zugehörigkeit** |
 |------------|------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|
-| 1.1        | Automatisches aktivieren des Heizlüfters wenn Raumtemperatur max. 1°C kälter ([Quelle](RechercheErgbnisse.md)) ist als gewünschte Temperatur | Logik             |
+| 1.1        | Automatisches aktivieren des Heizlüfters wenn Raumtemperatur max. 1°C kälter ([Quelle](Iteration1/RechercheErgbnisse.md)) ist als gewünschte Temperatur | Logik             |
 | 1.2        | Automatisches deaktivieren des Heizlüfters bei erreichen der gewünschten Temperatur                                                            | Logik             |
-| 1.3        | Halten der gewünschten Temperatur mit Schwankungen bis max. 1°C ([Quelle](RechercheErgbnisse.md))                                            | Logik             |
+| 1.3        | Halten der gewünschten Temperatur mit Schwankungen bis max. 1°C ([Quelle](Iteration1/RechercheErgbnisse.md))                                            | Logik             |
 | 1.4        | Strickte Trennung der zentralen Logikkomponente vom restlichen Code                                                                            | Logik             |
 | 1.5        | Anzeige der aktuellen Raumtemperatur                                                                                                           | UI                |
 | 1.6        | Möglichkeit zum ändern der gewünschten Temperatur                                                                                              | UI                |
@@ -32,7 +32,7 @@ Link lol
 
 ## Iterationen
 
-### [Iteration1](Iteration1.md): <br>
+### [Iteration1](Iteration1/Iteration1.md): <br>
 In der ersten Iteration des Projekts wurden die grundlegende Architektur, die ersten Requirements sowie 
 die zentralen Klassen der Anwendung entwickelt. Ziel war es, eine stabile Basis für die weitere Entwicklung 
 des Heizlüftersystems zu schaffen. Dabei wurden Funktionen wie die Messung der Raumtemperatur, die Eingabe 
