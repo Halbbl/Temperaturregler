@@ -136,29 +136,31 @@ gleichzeitig nachvollziehbar dokumentiert wurde.
 ### 5. Testing
 
 Req. 1.1 bis 1.3: <br>
-Das Testen der automatischen Aktivierung, Deaktivierung sowie des Haltens der Temperature wurde über 
-verschiedene und mehrfache Eingaben von Temperaturen getestet. Hierfür wurden sowohl höhere als auch
-niedrigere Temperaturen als die initiale Temperatur verwendet. Dabei wurde darauf geachtet, dass sich 
-die simulierte Temperatur immer der gewünschten annähert. <br>
-Insgesamt wurden für diesen Test ca. 30 Eingaben in 5 verschiedenen Instanzen getätigt.
+Die automatische Aktivierung, Deaktivierung sowie das Halten der Temperatur wurden durch verschiedene 
+und wiederholte Eingaben von Zieltemperaturen getestet. Hierfür wurden sowohl höhere als auch niedrigere 
+Temperaturen als die initiale Raumtemperatur verwendet. Dabei wurde überprüft, ob sich die simulierte 
+Temperatur schrittweise der gewünschten Zieltemperatur annähert und der Heizlüfter entsprechend reagiert. <br>
+Insgesamt wurden für diesen Test etwa 30 Eingaben in 5 verschiedenen Instanzen durchgeführt. Alle Tests 
+verliefen erfolgreich.
 
 Req. 1.5 bis 1.7: <br>
-Um das Anzeigen der aktuellen Temperatur, die Eingabe des Nutzers und das Ändern der UI zu testen wurden
-die für den ersten Test genannten Eingaben über die UI durchgeführt. Dabei wurde darauf geachtet, dass
-der "Temperatur ändern" sowie der "Speichern" Knopf funktionieren und das Eingabefeld mit Tastatur sowie 
-mit dem angezeigten Keypad funktioniert. <br>
-Hierfür wurden 15 Eingaben mit der Tastatur und 15 mit dem Touchpad gemacht, wobei jede Zahl mindestens
-einmal verwendet wurde.
+Zur Überprüfung der Anzeige der aktuellen Temperatur, der Benutzereingabe sowie der dynamischen Änderungen 
+der UI wurden die bereits im ersten Test verwendeten Eingaben über die Benutzeroberfläche durchgeführt. Dabei 
+wurde kontrolliert, ob die Buttons „Speichern“ und „Temperatur ändern“ korrekt funktionieren und ob das 
+Eingabefeld sowohl mit der Tastatur als auch mit dem angezeigten Keypad bedient werden kann. <br>
+Für diesen Test wurden insgesamt 15 Eingaben über die Tastatur sowie 15 Eingaben über das Keypad durchgeführt, 
+wobei jede Zahl mindestens einmal verwendet wurde. Alle Funktionen arbeiteten wie erwartet.
 
-Req 1.9: <br>
-Das Abfangen nicht genehmigter Eingaben wie Buchstaben oder negative Zahlen wurde durch das gezielte Eingeben
-dieser getestet. Hierfür wurde versucht, auf der Tastatur Wörter oder Zahlen kleiner 0 einzugeben. Da dies 
-sofort von einem KeyListener abgefangen wird, wurden diese Eingaben nicht einmal im Input Feld angezeigt.
-Die Eingabe auf dem Keypad wurde dadurch verhindert, dass darauf nur valide Zahlen angezeigt werden. <br>
-Das Eingeben einer Zahl mit mehreren Punkten (bsp. 19.0.3) wurde auf der Tastatur wieder mit dem KeyListener
-abgefangen. Auf dem Keypad ist diese Eingabe zwar möglich, führt aber zum Exception Catch und zeigt dadurch 
-eine Fehlermeldung an. <br>
-Für diesen Test wurden 20 Eingaben in 4 verschiedenen Instanzen gemacht.
+Req. 1.9: <br>
+Das Abfangen ungültiger Eingaben, wie Buchstaben oder negativer Zahlen, wurde durch gezielte Fehleingaben 
+getestet. Hierfür wurden über die Tastatur sowohl Wörter als auch Zahlen kleiner als 0 eingegeben. Diese 
+Eingaben wurden unmittelbar durch den verwendeten KeyListener abgefangen und daher nicht im Eingabefeld angezeigt. <br>
+Da auf dem Keypad ausschließlich gültige Zeichen dargestellt werden, konnten dort keine Buchstaben oder 
+negativen Zahlen eingegeben werden. Das Eingeben einer Zahl mit mehreren Dezimalpunkten (z. B. 19.0.3) wurde 
+bei der Tastatureingabe ebenfalls durch den KeyListener verhindert. Über das Keypad war diese Eingabe zwar 
+möglich, wurde jedoch beim Speichern durch eine Exception erkannt, woraufhin eine Fehlermeldung angezeigt wurde. <br>
+Für diesen Test wurden insgesamt 20 Eingaben in 4 verschiedenen Instanzen durchgeführt. Alle ungültigen 
+Eingaben wurden korrekt behandelt.
 
 
 
