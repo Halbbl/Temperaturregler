@@ -1,8 +1,10 @@
 package fanheater.src;
 import fanheater.src.heater.Heater;
 import fanheater.src.manager.ComponentsManager;
-import fanheater.src.sensor.TemperatureSensor;
-import fanheater.src.simulation.TemperatureSimulation;
+import fanheater.src.sensor.InternalTemperatureSensor;
+import fanheater.src.sensor.RoomTemperatureSensor;
+import fanheater.src.simulation.FanHeaterTemperatureSimulation;
+import fanheater.src.simulation.RoomTemperatureSimulation;
 import fanheater.src.ui.FanHeaterUI;
 
 /**
@@ -17,20 +19,30 @@ public class Main {
     public static void main(String[] args) {
 
         final int UPDATE_INTERVAL_MS = 1000;
-        final double TEMPERATURE_DECREASE_RATE = 0.02;
+        final double ROOM_TEMPERATURE_DECREASE_RATE = 0.02;
         final double INITIAL_ROOM_TEMPERATURE = 18.0;
-        final double MIN_TEMPERATURE = -50.0;
-        final double MAX_TEMPERATURE = 50.0;
+        final double MIN_TEMPERATURE_ROOM = -50.0;
+        final double MAX_TEMPERATURE_ROOM = 50.0;
+        final double START_TEMPERATURE_DEVICE = 20.0;
+        final double DEVICE_TEMPERATURE_DECREASE_RATE = 0.2;
+        final double MAX_DEVICE_TEMPERATURE = 90.0;
+        final double PUFFER_DEVICE_TEMPERATURE = 5.0;
 
-        TemperatureSimulation temperatureSimulation;
-        TemperatureSensor temperatureSensor;
+        RoomTemperatureSimulation roomTemperatureSimulation;
+        RoomTemperatureSensor roomTemperatureSensor;
+        FanHeaterTemperatureSimulation fanHeaterTemperatureSimulation;
+        InternalTemperatureSensor internalTemperatureSensor;
         Heater heater;
         ComponentsManager componentsManager;
 
-        temperatureSimulation = new TemperatureSimulation(INITIAL_ROOM_TEMPERATURE, TEMPERATURE_DECREASE_RATE, MIN_TEMPERATURE, MAX_TEMPERATURE);
-        temperatureSensor = new TemperatureSensor(temperatureSimulation);
+
+        roomTemperatureSimulation = new RoomTemperatureSimulation(INITIAL_ROOM_TEMPERATURE, ROOM_TEMPERATURE_DECREASE_RATE, MIN_TEMPERATURE_ROOM, MAX_TEMPERATURE_ROOM);
+        roomTemperatureSensor = new RoomTemperatureSensor(roomTemperatureSimulation);
+        fanHeaterTemperatureSimulation = new FanHeaterTemperatureSimulation(START_TEMPERATURE_DEVICE, DEVICE_TEMPERATURE_DECREASE_RATE);
+        internalTemperatureSensor = new InternalTemperatureSensor(fanHeaterTemperatureSimulation);
         heater = new Heater();
-        componentsManager = new ComponentsManager(heater, temperatureSensor, temperatureSimulation);
+
+        componentsManager = new ComponentsManager(heater, roomTemperatureSensor, roomTemperatureSimulation, fanHeaterTemperatureSimulation, MAX_DEVICE_TEMPERATURE, PUFFER_DEVICE_TEMPERATURE, internalTemperatureSensor);
         componentsManager.updateForTargetTemperature(INITIAL_ROOM_TEMPERATURE);
 
         new FanHeaterUI(componentsManager);

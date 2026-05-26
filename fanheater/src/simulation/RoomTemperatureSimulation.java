@@ -3,9 +3,9 @@ package fanheater.src.simulation;
 import fanheater.src.heater.HeaterLevel;
 
 /**
- * Simple Temperature simulation for testing without the hardware
+ * Simple room temperature simulation for testing without the hardware
  */
-public class TemperatureSimulation {
+public class RoomTemperatureSimulation {
 
     private double currentRoomTemperature;
     private final double temperatureDecreaseRate;
@@ -13,13 +13,13 @@ public class TemperatureSimulation {
     private final double maxTemperature;
 
     /**
-     * Constructure of temperature simulator
+     * Constructure of room temperature simulator
      * @param currentRoomTemperature starting room temperature
      * @param temperatureDecreaseRate Rate at which the temperature decreases when not heating
      * @param minTemperature minimal temperature the simulation can display
      * @param maxTemperature maximal temperature the simulation can display
      */
-    public TemperatureSimulation(double currentRoomTemperature, double temperatureDecreaseRate, double minTemperature, double maxTemperature) {
+    public RoomTemperatureSimulation(double currentRoomTemperature, double temperatureDecreaseRate, double minTemperature, double maxTemperature) {
         this.currentRoomTemperature = currentRoomTemperature;
         this.temperatureDecreaseRate = temperatureDecreaseRate;
         this.minTemperature = minTemperature;
@@ -27,7 +27,7 @@ public class TemperatureSimulation {
     }
 
     /**
-     * Updates the temperature depending on if the heater is active or not
+     * Updates the room temperature depending on if the heater is active or not
      * @param currentLevel level at which the heater is heating
      */
     public void updateTemperature(HeaterLevel currentLevel) {

@@ -4,15 +4,18 @@ package fanheater.src.heater;
  * Different heating levels for the heater
  */
 public enum HeaterLevel {
-    OFF(0.0),
-    LOW(0.1),
-    MEDIUM(0.3),
-    HIGH(0.6);
+    // °C/min
+    OFF(0.0, 0.0),
+    LOW(0.1, 0.5),
+    MEDIUM(0.3, 1.2),
+    HIGH(0.6, 2.5);
 
     private final double heatingPower;
+    private final double fanHeaterTemperatureIncreaseRate;
 
-    HeaterLevel(double heatingPower) {
+    HeaterLevel(double heatingPower, double fanHeaterTemperatureIncreaseRate) {
         this.heatingPower = heatingPower;
+        this.fanHeaterTemperatureIncreaseRate = fanHeaterTemperatureIncreaseRate;
     }
 
     /**
@@ -21,6 +24,14 @@ public enum HeaterLevel {
      */
     public double getHeatingPower() {
         return heatingPower;
+    }
+
+    /**
+     * Returns the temperature increase rate for the fanheater
+     * @return increase rate
+     */
+    public double getFanHeaterTemperatureIncreaseRate() {
+        return fanHeaterTemperatureIncreaseRate;
     }
 }
 
