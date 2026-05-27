@@ -36,6 +36,9 @@ public class RoomTemperatureSimulation {
         } else if ((currentLevel.equals(HeaterLevel.OFF)) && currentRoomTemperature > minTemperature) {
             currentRoomTemperature -= temperatureDecreaseRate;
         }
+        if (currentRoomTemperature < minTemperature) {
+            currentRoomTemperature = minTemperature;
+        }
     }
 
     /**

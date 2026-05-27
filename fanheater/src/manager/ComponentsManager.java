@@ -20,7 +20,6 @@ public class ComponentsManager {
     private final double PUFFER_DEVICE_TEMPERATURE;
 
     private double targetTemperature;
-    private double currentRoomTemperature;
     private boolean overheated;
 
     /**
@@ -38,7 +37,6 @@ public class ComponentsManager {
         this.MAX_INTERNAL_TEMPERATURE = maxInternalTemperature;
         this.PUFFER_DEVICE_TEMPERATURE = pufferDeviceTemperature;
 
-        currentRoomTemperature = roomTemperatureSensor.readCurrentTemperature();
         targetTemperature = 0.0;
         overheated = false;
     }
@@ -51,16 +49,14 @@ public class ComponentsManager {
         checkForOverheating();
         roomTemperatureSimulation.updateTemperature(heater.getCurrentLevel());
         fanHeaterTemperatureSimulation.updateTemperature(heater.getCurrentLevel());
-        System.out.println(getCurrentDeviceTemperature() + " - " + getCurrentRoomTemperature());
     }
 
     /**
      * Gets the current room temperature
-     * @return currents room temperature
+     * @return current room temperature
      */
     public double getCurrentRoomTemperature() {
-        currentRoomTemperature = roomTemperatureSensor.readCurrentTemperature();
-        return currentRoomTemperature;
+        return Math.round(roomTemperatureSensor.readCurrentTemperature()*100.0)/100.0;
     }
 
     public double getCurrentDeviceTemperature() {
@@ -78,18 +74,18 @@ public class ComponentsManager {
     }
 
     private void checkForHeatingLevel(){
-        double difference = targetTemperature - roomTemperatureSensor.readCurrentTemperature();
+        double difference = Math.round(targetTemperature*100.0)/100.0 - Math.round(getCurrentRoomTemperature()*100.0)/100.0;
 
         if (!overheated) {
-            if (difference >= 5.0) {
+            if (Math.round(difference*100.0)/100.0 >= 5.0) {
 
                 heater.setCurrentLevel(HeaterLevel.HIGH);
 
-            } else if (difference >= 2.0) {
+            } else if (Math.round(difference*100.0)/100.0 >= 2.0) {
 
                 heater.setCurrentLevel(HeaterLevel.MEDIUM);
 
-            } else if (difference > 0.0) {
+            } else if (Math.round(difference*100.0)/100.0 > 0.0) {
 
                 heater.setCurrentLevel(HeaterLevel.LOW);
 
@@ -98,6 +94,7 @@ public class ComponentsManager {
                 heater.setCurrentLevel(HeaterLevel.OFF);
             }
         }
+        //System.out.println(Math.round(difference*100.0)/100.0 + " : " + getCurrentRoomTemperature() + ", " + getCurrentDeviceTemperature() + " - Level: " +  heater.getCurrentLevel());
     }
 
     private void checkForOverheating(){

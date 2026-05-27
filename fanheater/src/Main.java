@@ -21,7 +21,7 @@ public class Main {
         final int UPDATE_INTERVAL_MS = 1000;
         final double ROOM_TEMPERATURE_DECREASE_RATE = 0.02;
         final double INITIAL_ROOM_TEMPERATURE = 18.0;
-        final double MIN_TEMPERATURE_ROOM = -50.0;
+        final double MIN_TEMPERATURE_ROOM = 18.0;
         final double MAX_TEMPERATURE_ROOM = 50.0;
         final double START_TEMPERATURE_DEVICE = 20.0;
         final double DEVICE_TEMPERATURE_DECREASE_RATE = 0.2;
