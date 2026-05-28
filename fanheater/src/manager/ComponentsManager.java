@@ -60,7 +60,7 @@ public class ComponentsManager {
     }
 
     public double getCurrentDeviceTemperature() {
-        return fanHeaterTemperatureSimulation.getCurrentTemperature();
+        return Math.round(internalTemperatureSensor.measureTemperature()*100.0)/100.0;
     }
 
     /**
@@ -73,8 +73,12 @@ public class ComponentsManager {
         }
     }
 
+    private double getTargetTemperature(){
+        return Math.round(targetTemperature*100.0)/100.0;
+    }
+
     private void checkForHeatingLevel(){
-        double difference = Math.round(targetTemperature*100.0)/100.0 - Math.round(getCurrentRoomTemperature()*100.0)/100.0;
+        double difference = getTargetTemperature()- getCurrentRoomTemperature();
 
         if (!overheated) {
             if (Math.round(difference*100.0)/100.0 >= 5.0) {
@@ -94,11 +98,12 @@ public class ComponentsManager {
                 heater.setCurrentLevel(HeaterLevel.OFF);
             }
         }
-        //System.out.println(Math.round(difference*100.0)/100.0 + " : " + getCurrentRoomTemperature() + ", " + getCurrentDeviceTemperature() + " - Level: " +  heater.getCurrentLevel());
+        System.out.println(overheated);
+        System.out.println(Math.round(difference*100.0)/100.0 + " : " + getCurrentRoomTemperature() + ", " + getCurrentDeviceTemperature() + " - Level: " +  heater.getCurrentLevel());
     }
 
     private void checkForOverheating(){
-        if (fanHeaterTemperatureSimulation.getCurrentTemperature() > MAX_INTERNAL_TEMPERATURE && !overheated){
+        if (getCurrentDeviceTemperature() > MAX_INTERNAL_TEMPERATURE && !overheated){
             heater.setCurrentLevel(HeaterLevel.OFF);
             overheated = true;
         }
@@ -106,7 +111,7 @@ public class ComponentsManager {
     }
 
     private void checkIfCooledDown(){
-        if (overheated && getCurrentDeviceTemperature() > MAX_INTERNAL_TEMPERATURE-PUFFER_DEVICE_TEMPERATURE) {
+        if (overheated && getCurrentDeviceTemperature() < MAX_INTERNAL_TEMPERATURE - PUFFER_DEVICE_TEMPERATURE) {
             overheated = false;
         }
     }

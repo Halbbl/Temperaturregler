@@ -26,7 +26,7 @@ public class Main {
         final double START_TEMPERATURE_DEVICE = 20.0;
         final double DEVICE_TEMPERATURE_DECREASE_RATE = 0.2;
         final double MAX_DEVICE_TEMPERATURE = 90.0;
-        final double PUFFER_DEVICE_TEMPERATURE = 5.0;
+        final double PUFFER_DEVICE_TEMPERATURE = 20.0;
 
         RoomTemperatureSimulation roomTemperatureSimulation;
         RoomTemperatureSensor roomTemperatureSensor;
