@@ -1,5 +1,6 @@
 package fanheater.src.ui;
 
+import fanheater.src.heater.HeaterStatus;
 import fanheater.src.manager.ComponentsManager;
 
 import javax.swing.*;
@@ -11,6 +12,7 @@ import java.awt.*;
 public class FanHeaterUI {
 
     private double targetTemperature;
+    private final JFrame frame;
 
     /**
      * Constructor and start of the UI
@@ -18,16 +20,19 @@ public class FanHeaterUI {
      */
     public FanHeaterUI(ComponentsManager componentsManager) {
 
-        JFrame frame = new JFrame("Heizlüfter");
+        frame = new JFrame("Heizlüfter");
         frame.setSize(400, 450);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout(4, 1, 10, 10));
 
-        JLabel title =
-                new JLabel("Heizlüfter Steuerung",
-                        SwingConstants.CENTER);
+        JLabel title = new JLabel("Heizlüfter Steuerung",
+                SwingConstants.CENTER);
 
         title.setFont(new Font("Arial", Font.BOLD, 20));
+
+        // Current Activity
+        JPanel activityPanel = new JPanel();
+        activityPanel.setLayout(new GridLayout(4, 1, 10, 10));
 
         //displays the currents temperature when heater is turned on
         JLabel currentTemperature =
@@ -37,6 +42,12 @@ public class FanHeaterUI {
                                 + "°C",
                         SwingConstants.CENTER
                 );
+
+        //displays the current status of the heater
+        JLabel status = new JLabel("Status: " + componentsManager.getHeaterStatus(), SwingConstants.CENTER);
+
+        activityPanel.add(currentTemperature);
+        activityPanel.add(status);
 
 
         JPanel centerPanel = new JPanel();
@@ -110,7 +121,7 @@ public class FanHeaterUI {
         saveButtonPanel.add(setTargetTemperatureButton);
 
         frame.add(title);
-        frame.add(currentTemperature);
+        frame.add(activityPanel);
         frame.add(centerPanel);
         frame.add(saveButtonPanel);
 
@@ -151,14 +162,16 @@ public class FanHeaterUI {
 
                 Timer timer = new Timer(1000, event -> {
 
-                    double currentTemp =
-                            componentsManager.getCurrentRoomTemperature();
+                    double currentTemp = componentsManager.getCurrentRoomTemperature();
                     //round temperature for better ux
                     currentTemperature.setText(
                             "Aktuelle Temperatur: "
                                     + Math.round(currentTemp * 10.0) / 10.0
                                     + "°C"
                     );
+
+                    HeaterStatus heaterStatus = componentsManager.getHeaterStatus();
+                    status.setText("Status: " + heaterStatus.toString());
                 });
 
                 timer.start();
