@@ -2,18 +2,34 @@ package fanheater.src.manager;
 
 import fanheater.src.heater.HeaterLevel;
 
+/**
+ * Manager fo heating level
+ */
 public class LevelManager {
 
     private HeaterLevel currentLevel;
 
+    /**
+     * Constructor of heating level manager
+     */
     public LevelManager() {
         currentLevel = HeaterLevel.OFF;
     }
 
+    /**
+     * Gets the current level
+     * @return current heating level
+     */
     public HeaterLevel getCurrentLevel() {
         return currentLevel;
     }
 
+    /**
+     * Updates the heating level
+     * @param currentTemperature current room temperature
+     * @param targetTemperature target room temperature
+     * @param overheated overheated or not
+     */
     public void updateLevel(double currentTemperature, double targetTemperature, boolean overheated) {
         double difference = targetTemperature- currentTemperature;
 

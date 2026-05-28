@@ -47,7 +47,7 @@ public class ComponentsManager {
     }
 
     /**
-     * checks if heater needs to be activated and updates the temperature simulation
+     * checks if heater needs to be activated, updates the temperature simulations and checks for overheating
      */
     public void update(){
         checkForStatus();
@@ -82,10 +82,18 @@ public class ComponentsManager {
         }
     }
 
+    /**
+     * Gets current heating level
+     * @return current heating level
+     */
     public HeaterLevel getHeaterLevel() {
         return heater.getCurrentLevel();
     }
 
+    /**
+     * Gets current heating status
+     * @return current heating status
+     */
     public HeaterStatus getHeaterStatus() {
         return statusManager.getCurrentStatus();
     }
