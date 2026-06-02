@@ -23,7 +23,7 @@ public class FanHeaterUI {
         frame = new JFrame("Heizlüfter");
         frame.setSize(400, 450);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout(4, 1, 10, 10));
+        frame.setLayout(new GridLayout(5, 1, 10, 10));
 
         JLabel title = new JLabel("Heizlüfter Steuerung",
                 SwingConstants.CENTER);
@@ -120,10 +120,18 @@ public class FanHeaterUI {
                 new JButton("Speichern");
         saveButtonPanel.add(setTargetTemperatureButton);
 
+        JPanel settingsButtonPanel = new JPanel();
+        JButton energySavingButton = new JButton("Energiesparmodus");
+        energySavingButton.addActionListener(e -> {
+            componentsManager.updateEnergySaving();
+        });
+        settingsButtonPanel.add(energySavingButton);
+
         frame.add(title);
         frame.add(activityPanel);
         frame.add(centerPanel);
         frame.add(saveButtonPanel);
+        frame.add(settingsButtonPanel);
 
         // after saving let change temperature button appear and save button disappear
         setTargetTemperatureButton.addActionListener(e -> {

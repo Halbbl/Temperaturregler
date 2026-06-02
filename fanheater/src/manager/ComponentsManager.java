@@ -123,4 +123,26 @@ public class ComponentsManager {
             overheated = false;
         }
     }
+
+    private void activateEnergySaving(){
+        heater.setEnergieSaving(true);
+        levelManager.setEnergySaving(true);
+    }
+
+    private void deactivateEnergySaving(){
+        heater.setEnergieSaving(false);
+        levelManager.setEnergySaving(false);
+    }
+
+    private boolean isEnergySavingActivated(){
+        return heater.isEnergieSaving();
+    }
+
+    public void updateEnergySaving(){
+        if (isEnergySavingActivated()){
+            deactivateEnergySaving();
+        } else {
+            activateEnergySaving();
+        }
+    }
 }
