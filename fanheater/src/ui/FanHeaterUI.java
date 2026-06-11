@@ -5,6 +5,7 @@ import fanheater.src.manager.ComponentsManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  * UI for the fan heater
@@ -44,7 +45,7 @@ public class FanHeaterUI {
                 );
 
         //displays the current status of the heater
-        JLabel status = new JLabel("Status: " + componentsManager.getHeaterStatus(), SwingConstants.CENTER);
+        JLabel status = new JLabel("Status: " + componentsManager.getHeaterStatus().getMessage(), SwingConstants.CENTER);
 
         activityPanel.add(currentTemperature);
         activityPanel.add(status);
@@ -115,17 +116,34 @@ public class FanHeaterUI {
 
         centerPanel.add(keypadPanel, BorderLayout.CENTER);
 
+        //energy saving button and display
         JPanel saveButtonPanel = new JPanel();
         JButton setTargetTemperatureButton =
                 new JButton("Speichern");
         saveButtonPanel.add(setTargetTemperatureButton);
 
+        String energySavingLabelText = "";
+        if (componentsManager.isEnergySavingActivated()) {
+            energySavingLabelText = "Active";
+        } else {
+            energySavingLabelText = "Inactive";
+        }
+        JLabel energySavingLabel = new JLabel(energySavingLabelText);
+
         JPanel settingsButtonPanel = new JPanel();
         JButton energySavingButton = new JButton("Energiesparmodus");
         energySavingButton.addActionListener(e -> {
             componentsManager.updateEnergySaving();
+            if (componentsManager.isEnergySavingActivated()) {
+                energySavingLabel.setText("Active");
+            } else {
+                energySavingLabel.setText("Inactive");
+            }
         });
+
         settingsButtonPanel.add(energySavingButton);
+        settingsButtonPanel.add(energySavingLabel);
+
 
         frame.add(title);
         frame.add(activityPanel);
@@ -168,22 +186,6 @@ public class FanHeaterUI {
                 frame.revalidate();
                 frame.repaint();
 
-                Timer timer = new Timer(1000, event -> {
-
-                    double currentTemp = componentsManager.getCurrentRoomTemperature();
-                    //round temperature for better ux
-                    currentTemperature.setText(
-                            "Aktuelle Temperatur: "
-                                    + Math.round(currentTemp * 10.0) / 10.0
-                                    + "°C"
-                    );
-
-                    HeaterStatus heaterStatus = componentsManager.getHeaterStatus();
-                    status.setText("Status: " + heaterStatus.toString());
-                });
-
-                timer.start();
-
             } catch (NumberFormatException ex) {
 
                 JOptionPane.showMessageDialog(
@@ -192,6 +194,50 @@ public class FanHeaterUI {
                 );
             }
         });
+
+        //simulate open window by pressing F
+        InputMap inputMap =
+                frame.getRootPane().getInputMap(
+                        JComponent.WHEN_IN_FOCUSED_WINDOW
+                );
+
+        ActionMap actionMap =
+                frame.getRootPane().getActionMap();
+
+        inputMap.put(
+                KeyStroke.getKeyStroke("F"),
+                "openWindow"
+        );
+
+        actionMap.put(
+                "openWindow",
+                new AbstractAction() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        componentsManager.updateWindow();
+                        //System.out.println("Window open: " +  componentsManager.isWindowOpen());
+                    }
+                }
+        );
+
+        Timer timer = new Timer(1000, event -> {
+
+            double currentTemp = componentsManager.getCurrentRoomTemperature();
+            //round temperature for better ux
+            currentTemperature.setText(
+                    "Aktuelle Temperatur: "
+                            + Math.round(currentTemp * 10.0) / 10.0
+                            + "°C"
+            );
+
+            HeaterStatus heaterStatus = componentsManager.getHeaterStatus();
+            status.setText("Status: " + heaterStatus.getMessage());
+        });
+
+        timer.start();
+
         frame.setVisible(true);
     }
 }

@@ -8,7 +8,6 @@ import fanheater.src.heater.HeaterLevel;
 public class LevelManager {
 
     private HeaterLevel currentLevel;
-    private boolean energySaving;
 
     /**
      * Constructor of heating level manager
@@ -30,11 +29,13 @@ public class LevelManager {
      * @param currentTemperature current room temperature
      * @param targetTemperature target room temperature
      * @param overheated overheated or not
+     * @param windowOpen is window open
+     * @param energySaving is energy saving active
      */
-    public void updateLevel(double currentTemperature, double targetTemperature, boolean overheated) {
+    public void updateLevel(double currentTemperature, double targetTemperature, boolean overheated, boolean windowOpen, boolean energySaving) {
         double difference = targetTemperature- currentTemperature;
 
-        if (!overheated) {
+        if (!overheated && !windowOpen) {
             if (Math.round(difference*100.0)/100.0 >= 5.0 && !energySaving) {
 
                 currentLevel = HeaterLevel.HIGH;
@@ -51,10 +52,8 @@ public class LevelManager {
 
                 currentLevel = HeaterLevel.OFF;
             }
+        } else if(overheated || windowOpen) {
+            currentLevel = HeaterLevel.OFF;
         }
-    }
-
-    public void setEnergySaving(boolean energySaving) {
-        this.energySaving = energySaving;
     }
 }

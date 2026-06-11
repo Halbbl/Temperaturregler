@@ -23,9 +23,13 @@ public class ComponentsManager {
 
     private final double MAX_INTERNAL_TEMPERATURE;
     private final double PUFFER_DEVICE_TEMPERATURE;
+    private final double WINDOW_OPEN_THRESHOLD;
 
     private double targetTemperature;
+    private double lastTemperatureMeasured;
     private boolean overheated;
+    private boolean energySaving;
+    private boolean windowOpenDetected;
 
     /**
      * Constructur for heating manager
@@ -33,7 +37,7 @@ public class ComponentsManager {
      * @param roomTemperatureSensor sensor
      * @param roomTemperatureSimulation the temperature simulation for testing without the hardware
      */
-    public ComponentsManager(Heater heater, RoomTemperatureSensor roomTemperatureSensor, RoomTemperatureSimulation roomTemperatureSimulation,  FanHeaterTemperatureSimulation fanHeaterTemperatureSimulation, double maxInternalTemperature, double pufferDeviceTemperature, InternalTemperatureSensor internalTemperatureSensor) {
+    public ComponentsManager(Heater heater, RoomTemperatureSensor roomTemperatureSensor, RoomTemperatureSimulation roomTemperatureSimulation,  FanHeaterTemperatureSimulation fanHeaterTemperatureSimulation, double maxInternalTemperature, double pufferDeviceTemperature, InternalTemperatureSensor internalTemperatureSensor, double windowOpenThreshold) {
         this.heater = heater;
         this.roomTemperatureSimulation = roomTemperatureSimulation;
         this.roomTemperatureSensor = roomTemperatureSensor;
@@ -41,19 +45,25 @@ public class ComponentsManager {
         this.internalTemperatureSensor = internalTemperatureSensor;
         this.MAX_INTERNAL_TEMPERATURE = maxInternalTemperature;
         this.PUFFER_DEVICE_TEMPERATURE = pufferDeviceTemperature;
+        this.WINDOW_OPEN_THRESHOLD = windowOpenThreshold;
 
         targetTemperature = 0.0;
+        lastTemperatureMeasured = Math.round(roomTemperatureSensor.readCurrentTemperature()*100.0)/100.0;
         overheated = false;
+        energySaving = false;
+        windowOpenDetected = false;
     }
 
     /**
      * checks if heater needs to be activated, updates the temperature simulations and checks for overheating
      */
     public void update(){
-        checkForStatus();
         checkForOverheating();
         roomTemperatureSimulation.updateTemperature(heater.getCurrentLevel());
         fanHeaterTemperatureSimulation.updateTemperature(heater.getCurrentLevel());
+        checkIfWindowOpen();
+        checkForStatus();
+        lastTemperatureMeasured = Math.round(roomTemperatureSensor.readCurrentTemperature()*100.0)/100.0;
     }
 
     /**
@@ -103,11 +113,10 @@ public class ComponentsManager {
     }
 
     private void checkForStatus(){
-        levelManager.updateLevel(getCurrentRoomTemperature(), getTargetTemperature(), overheated);
+        levelManager.updateLevel(getCurrentRoomTemperature(), getTargetTemperature(), overheated, windowOpenDetected, energySaving);
         heater.setCurrentLevel(levelManager.getCurrentLevel());
-        statusManager.updateStatus(getHeaterLevel(), overheated);
-        //System.out.println(overheated);
-        System.out.println("Level: " +  heater.getCurrentLevel() + ", Status: " + getHeaterStatus());
+        statusManager.updateStatus(getHeaterLevel(), overheated, windowOpenDetected);
+        System.out.println("Level: " +  heater.getCurrentLevel() + ", Status: " + getHeaterStatus() + "; Temp: " + getCurrentRoomTemperature());
     }
 
     private void checkForOverheating(){
@@ -125,24 +134,51 @@ public class ComponentsManager {
     }
 
     private void activateEnergySaving(){
-        heater.setEnergieSaving(true);
-        levelManager.setEnergySaving(true);
+        energySaving = true;
     }
 
     private void deactivateEnergySaving(){
-        heater.setEnergieSaving(false);
-        levelManager.setEnergySaving(false);
+        energySaving = false;
     }
 
-    private boolean isEnergySavingActivated(){
-        return heater.isEnergieSaving();
+    /**
+     * Returns energy saving
+     * @return true if activated
+     */
+    public boolean isEnergySavingActivated(){
+        return energySaving;
     }
 
+    /**
+     * Toggles the energy saving mode on or off.
+     * If energy saving is active, it will be deactivated and vice versa.
+     */
     public void updateEnergySaving(){
         if (isEnergySavingActivated()){
             deactivateEnergySaving();
         } else {
             activateEnergySaving();
         }
+    }
+
+    /**
+     * Simulates opening or closing the window in the room.
+     * Updates the room temperature simulation accordingly.
+     */
+    public void updateWindow(){
+        roomTemperatureSimulation.setWindowOpen(!roomTemperatureSimulation.isWindowOpen());
+    }
+
+    private void checkIfWindowOpen() {
+        double difference = getCurrentRoomTemperature() - lastTemperatureMeasured;
+        windowOpenDetected = Math.abs(difference) >= WINDOW_OPEN_THRESHOLD && difference < 0;
+    }
+
+    /**
+     * Returns whether a window opening has been detected based on temperature changes.
+     * @return true if a sudden temperature drop indicates an open window
+     */
+    public boolean isWindowOpen() {
+        return windowOpenDetected;
     }
 }

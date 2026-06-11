@@ -6,14 +6,12 @@ package fanheater.src.heater;
 public class Heater {
 
     private HeaterLevel currentLevel;
-    private boolean energieSaving;
 
     /**
      * Constructor of Heater
      */
     public Heater() {
         currentLevel = HeaterLevel.OFF;
-        energieSaving = false;
     }
 
     /**
@@ -30,13 +28,5 @@ public class Heater {
      */
     public void setCurrentLevel(HeaterLevel currentLevel) {
         this.currentLevel = currentLevel;
-    }
-
-    public boolean isEnergieSaving() {
-        return energieSaving;
-    }
-
-    public void setEnergieSaving(boolean energieSaving) {
-        this.energieSaving = energieSaving;
     }
 }

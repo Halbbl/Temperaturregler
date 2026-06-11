@@ -1,5 +1,8 @@
 package fanheater.src.heater;
 
+/**
+ * Different heater status for the heater with messages
+ */
 public enum HeaterStatus {
     OFF("Aus"),
     STARTING("Fährt hoch"),
@@ -15,6 +18,10 @@ public enum HeaterStatus {
         this.message = message;
     }
 
+    /**
+     * Gets the message for the status
+     * @return message as String
+     */
     public String getMessage() {
         return message;
     }
