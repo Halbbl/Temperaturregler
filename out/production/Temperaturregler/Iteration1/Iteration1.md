@@ -1,7 +1,7 @@
 # Iteration 1
 
 In dieser Iteration wurde das Architekturmodell gewählt, die anfänglichen Requirements 
-festgelegt sowie die grundlegnden Klassen implementiert. Dabei wurden besonders folgend 
+festgelegt sowie die grundlegnden Klassen implementiert. Dabei wurden besonders folgende 
 Funktionen berücksichtigt:
 
 - Messen der Raumtemperatur
