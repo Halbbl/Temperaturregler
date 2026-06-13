@@ -1,4 +1,5 @@
 package fanheater.src;
+import config.Settings;
 import fanheater.src.heater.Heater;
 import fanheater.src.manager.ComponentsManager;
 import fanheater.src.sensor.InternalTemperatureSensor;
@@ -21,18 +22,7 @@ public class Main {
         final int UPDATE_INTERVAL_MS = 1000;
         final double WINDOW_OPEN_THRESHOLD = 0.08;
 
-        //for room simulation
-        final double ROOM_TEMPERATURE_DECREASE_RATE = 0.02;
-        final double INITIAL_ROOM_TEMPERATURE = 18.0;
-        final double MAX_TEMPERATURE_ROOM = 50.0;
-        final double OUTSIDE_TEMPERATURE = 8.0;
-        final int WINDOW_OPEN_DECREASE_RATE = 5;
-
-        //for device temperature simulation
-        final double START_TEMPERATURE_DEVICE = 20.0;
-        final double DEVICE_TEMPERATURE_DECREASE_RATE = 0.2;
-        final double MAX_DEVICE_TEMPERATURE = 90.0;
-        final double PUFFER_DEVICE_TEMPERATURE = 20.0;
+        Settings settings = new Settings("settings.json")
 
         RoomTemperatureSimulation roomTemperatureSimulation;
         RoomTemperatureSensor roomTemperatureSensor;

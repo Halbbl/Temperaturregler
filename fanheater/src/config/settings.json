@@ -1,0 +1,7 @@
+{
+  "targetTemperature": 0.0,
+  "energySaving": false,
+  "maxTemperatureRoom": 30.0,
+  "maxInternalTemperature": 50.0,
+  "windowOpenThreshold": 0.08
+}
