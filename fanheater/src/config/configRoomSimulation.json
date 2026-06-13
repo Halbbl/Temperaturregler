@@ -1,7 +1,0 @@
-{
-  "initialRoomTemperature": 18.0,
-  "decreaseRate": 0.02,
-  "maxTemperature": 30.0,
-  "outsideTemperature": 8.0,
-  "windowOpenDecreaseRate": 5
-}

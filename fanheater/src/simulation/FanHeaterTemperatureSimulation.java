@@ -1,5 +1,6 @@
 package fanheater.src.simulation;
 
+import config.ConfigInternalSimulation;
 import fanheater.src.heater.HeaterLevel;
 
 /**
@@ -12,13 +13,12 @@ public class FanHeaterTemperatureSimulation {
 
     /**
      * Custructor of device temperature simulator
-     * @param startTemperature starting temperature when turned on
-     * @param temperatureDecreaseRate decrease rate of temperature
+     * @param configInternalSimulation all needed configurations
      */
-    public FanHeaterTemperatureSimulation(double startTemperature, double temperatureDecreaseRate) {
-        this.currentTemperature = startTemperature;
-        this.temperatureDecreaseRate = temperatureDecreaseRate;
-        this.startTemperature = startTemperature;
+    public FanHeaterTemperatureSimulation(ConfigInternalSimulation configInternalSimulation) {
+        currentTemperature = configInternalSimulation.INITIAL_TEMPERATURE;
+        temperatureDecreaseRate = configInternalSimulation.DECREASE_RATE;
+        startTemperature = configInternalSimulation.INITIAL_TEMPERATURE;
     }
 
     /**

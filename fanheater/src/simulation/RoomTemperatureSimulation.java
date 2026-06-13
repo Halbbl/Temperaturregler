@@ -1,5 +1,6 @@
 package fanheater.src.simulation;
 
+import config.ConfigRoomSimulation;
 import fanheater.src.heater.HeaterLevel;
 
 /**
@@ -16,17 +17,14 @@ public class RoomTemperatureSimulation {
 
     /**
      * Constructure of room temperature simulator
-     * @param currentRoomTemperature starting room temperature
-     * @param temperatureDecreaseRate Rate at which the temperature decreases when not heating
-     * @param maxTemperature maximal temperature the simulation can display
-     * @param outsideTemperature the temperature outside and min temperature of the room
+     * @param configRoomSimulation all needed configurations
      */
-    public RoomTemperatureSimulation(double currentRoomTemperature, double temperatureDecreaseRate, double maxTemperature, double outsideTemperature, int windowOpenDecreaseRate) {
-        this.currentRoomTemperature = currentRoomTemperature;
-        this.temperatureDecreaseRate = temperatureDecreaseRate;
-        this.maxTemperature = maxTemperature;
-        this.outsideTemperature = outsideTemperature;
-        this.windowOpenDecreaseRate = windowOpenDecreaseRate;
+    public RoomTemperatureSimulation(ConfigRoomSimulation configRoomSimulation) {
+        currentRoomTemperature = configRoomSimulation.INITIAL_TEMPERATURE;
+        temperatureDecreaseRate = configRoomSimulation.DECREASE_RATE;
+        maxTemperature = configRoomSimulation.MAX_TEMPERATURE;
+        outsideTemperature = configRoomSimulation.OUTSIDE_TEMPERATURE;
+        windowOpenDecreaseRate = (int)configRoomSimulation.WINDOW_OPEN_DECREASE_RATE;
         windowOpen = false;
     }
 

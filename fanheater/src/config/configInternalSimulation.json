@@ -1,6 +1,0 @@
-{
-  "initialTemperature": 20.0,
-  "decreaseRate": 0.2,
-  "maxTemperature": 90.0,
-  "puffer": 20.0
-}

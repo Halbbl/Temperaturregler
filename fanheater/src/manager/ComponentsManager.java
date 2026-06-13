@@ -1,4 +1,6 @@
 package fanheater.src.manager;
+import config.Components;
+import config.Settings;
 import fanheater.src.heater.Heater;
 import fanheater.src.heater.HeaterLevel;
 import fanheater.src.heater.HeaterStatus;
@@ -6,6 +8,9 @@ import fanheater.src.sensor.InternalTemperatureSensor;
 import fanheater.src.sensor.RoomTemperatureSensor;
 import fanheater.src.simulation.FanHeaterTemperatureSimulation;
 import fanheater.src.simulation.RoomTemperatureSimulation;
+import fanheater.src.manager.StatusManager;
+import fanheater.src.manager.LevelManager;
+import manager.SettingsManager;
 
 /**
  * Manager class for the components of the heater
@@ -20,6 +25,7 @@ public class ComponentsManager {
 
     private final StatusManager statusManager = new StatusManager();
     private final LevelManager levelManager = new LevelManager();
+    private final SettingsManager settingsManager = new SettingsManager(System.getProperty("user.dir") + "/fanheater/src/config/settings.properties");
 
     private final double MAX_INTERNAL_TEMPERATURE;
     private final double PUFFER_DEVICE_TEMPERATURE;
@@ -32,26 +38,26 @@ public class ComponentsManager {
     private boolean windowOpenDetected;
 
     /**
-     * Constructur for heating manager
-     * @param heater the heater
-     * @param roomTemperatureSensor sensor
-     * @param roomTemperatureSimulation the temperature simulation for testing without the hardware
+     * Constructur for components manager
+     * @param components all hardware components
+     * @param settings present settings
      */
-    public ComponentsManager(Heater heater, RoomTemperatureSensor roomTemperatureSensor, RoomTemperatureSimulation roomTemperatureSimulation,  FanHeaterTemperatureSimulation fanHeaterTemperatureSimulation, double maxInternalTemperature, double pufferDeviceTemperature, InternalTemperatureSensor internalTemperatureSensor, double windowOpenThreshold) {
-        this.heater = heater;
-        this.roomTemperatureSimulation = roomTemperatureSimulation;
-        this.roomTemperatureSensor = roomTemperatureSensor;
-        this.fanHeaterTemperatureSimulation = fanHeaterTemperatureSimulation;
-        this.internalTemperatureSensor = internalTemperatureSensor;
-        this.MAX_INTERNAL_TEMPERATURE = maxInternalTemperature;
-        this.PUFFER_DEVICE_TEMPERATURE = pufferDeviceTemperature;
-        this.WINDOW_OPEN_THRESHOLD = windowOpenThreshold;
+    public ComponentsManager(Components components, Settings settings) {
+        this.heater = components.heater;
+        this.roomTemperatureSimulation = components.roomTemperatureSimulation;
+        this.roomTemperatureSensor = components.roomTemperatureSensor;
+        this.fanHeaterTemperatureSimulation = components.fanHeaterTemperatureSimulation;
+        this.internalTemperatureSensor = components.internalTemperatureSensor;
 
-        targetTemperature = 0.0;
-        lastTemperatureMeasured = Math.round(roomTemperatureSensor.readCurrentTemperature()*100.0)/100.0;
+        targetTemperature = settings.TARGET_TEMPERATURE;
+        energySaving = settings.ENERGY_SAVING;
+        MAX_INTERNAL_TEMPERATURE = settings.MAX_TEMPERATURE_INTERNAL;
+        PUFFER_DEVICE_TEMPERATURE = settings.PUFFER_DEVICE_TEMPERATURE;
+        WINDOW_OPEN_THRESHOLD = settings.WINDOW_OPEN_THRESHOLD;
+
         overheated = false;
-        energySaving = false;
         windowOpenDetected = false;
+        lastTemperatureMeasured = Math.round(roomTemperatureSensor.readCurrentTemperature()*100.0)/100.0;
     }
 
     /**
@@ -89,6 +95,7 @@ public class ComponentsManager {
     public void updateForTargetTemperature(double newTargetTemperature) {
         if (newTargetTemperature != targetTemperature) {
             targetTemperature = newTargetTemperature;
+            settingsManager.setTargetTemperature(targetTemperature);
         }
     }
 
@@ -158,6 +165,7 @@ public class ComponentsManager {
         } else {
             activateEnergySaving();
         }
+        settingsManager.setEnergySaving(energySaving);
     }
 
     /**
