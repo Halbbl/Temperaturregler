@@ -7,8 +7,6 @@ import fanheater.src.simulation.FanHeaterTemperatureSimulation;
 import fanheater.src.simulation.RoomTemperatureSimulation;
 import fanheater.src.ui.FanHeaterUI;
 
-import java.awt.event.KeyEvent;
-
 /**
  * Main class for starting the fan heater
  */
