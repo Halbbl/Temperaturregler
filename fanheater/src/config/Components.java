@@ -5,19 +5,19 @@ import fanheater.src.sensor.InternalTemperatureSensor;
 import fanheater.src.sensor.RoomTemperatureSensor;
 import fanheater.src.simulation.FanHeaterTemperatureSimulation;
 import fanheater.src.simulation.RoomTemperatureSimulation;
+import sensor.TimeSensor;
+import simulation.TimeSimulation;
 
 public class Components {
     public final Heater heater;
-    public final RoomTemperatureSimulation roomTemperatureSimulation;
     public final RoomTemperatureSensor roomTemperatureSensor;
-    public final FanHeaterTemperatureSimulation fanHeaterTemperatureSimulation;
     public final InternalTemperatureSensor internalTemperatureSensor;
+    public final TimeSensor timeSensor;
 
-    public Components(Heater heater, RoomTemperatureSimulation roomTemperatureSimulation, RoomTemperatureSensor roomTemperatureSensor, FanHeaterTemperatureSimulation fanHeaterTemperatureSimulation,  InternalTemperatureSensor internalTemperatureSensor) {
+    public Components(Heater heater, RoomTemperatureSensor roomTemperatureSensor, InternalTemperatureSensor internalTemperatureSensor, TimeSensor timeSensor) {
         this.heater = heater;
-        this.roomTemperatureSimulation = roomTemperatureSimulation;
         this.roomTemperatureSensor = roomTemperatureSensor;
-        this.fanHeaterTemperatureSimulation = fanHeaterTemperatureSimulation;
         this.internalTemperatureSensor = internalTemperatureSensor;
+        this.timeSensor = timeSensor;
     }
 }

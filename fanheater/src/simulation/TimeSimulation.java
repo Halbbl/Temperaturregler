@@ -1,13 +1,15 @@
 package simulation;
 
+import config.ConfigTime;
+
 public class TimeSimulation {
     private final static int MINUTES = 60;
     private final static int HOURS = 24;
 
     private int[] time = new int[2];
 
-    public TimeSimulation(int[] time){
-        time = time;
+    public TimeSimulation(ConfigTime config) {
+        time = config.time;
     }
 
     public int[] getTime(){

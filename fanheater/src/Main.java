@@ -1,8 +1,5 @@
 package fanheater.src;
-import config.Components;
-import config.ConfigInternalSimulation;
-import config.ConfigRoomSimulation;
-import config.Settings;
+import config.*;
 import fanheater.src.heater.Heater;
 import fanheater.src.manager.ComponentsManager;
 import fanheater.src.sensor.InternalTemperatureSensor;
@@ -10,6 +7,8 @@ import fanheater.src.sensor.RoomTemperatureSensor;
 import fanheater.src.simulation.FanHeaterTemperatureSimulation;
 import fanheater.src.simulation.RoomTemperatureSimulation;
 import fanheater.src.ui.FanHeaterUI;
+import sensor.TimeSensor;
+import simulation.TimeSimulation;
 
 /**
  * Main class for starting the fan heater
@@ -34,6 +33,9 @@ public class Main {
         String configRoomPath = System.getProperty("user.dir") + "/fanheater/src/config/configRoomSimulation.properties";
         ConfigRoomSimulation configRoomSimulation = new ConfigRoomSimulation(configRoomPath);
 
+        String configTimePath = System.getProperty("user.dir") + "/fanheater/src/config/configTime.properties";
+        ConfigTime configTime = new ConfigTime(configTimePath);
+
 
         RoomTemperatureSimulation roomTemperatureSimulation;
         RoomTemperatureSensor roomTemperatureSensor;
@@ -41,17 +43,22 @@ public class Main {
         InternalTemperatureSensor internalTemperatureSensor;
         Heater heater;
         ComponentsManager componentsManager;
+        TimeSensor timeSensor;
+        TimeSimulation timeSimulation;
 
 
+        timeSimulation = new TimeSimulation(configTime);
+        timeSensor = new TimeSensor(timeSimulation);
         roomTemperatureSimulation = new RoomTemperatureSimulation(configRoomSimulation);
         roomTemperatureSensor = new RoomTemperatureSensor(roomTemperatureSimulation);
         fanHeaterTemperatureSimulation = new FanHeaterTemperatureSimulation(configInternalSimulation);
         internalTemperatureSensor = new InternalTemperatureSensor(fanHeaterTemperatureSimulation);
         heater = new Heater();
 
-        Components components = new Components(heater, roomTemperatureSimulation, roomTemperatureSensor, fanHeaterTemperatureSimulation, internalTemperatureSensor);
+        Components components = new Components(heater, roomTemperatureSensor, internalTemperatureSensor, timeSensor);
+        Simulations simulations = new Simulations(roomTemperatureSimulation, fanHeaterTemperatureSimulation, timeSimulation);
 
-        componentsManager = new ComponentsManager(components, settings);
+        componentsManager = new ComponentsManager(components, simulations, settings);
 
         new FanHeaterUI(componentsManager);
 

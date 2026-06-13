@@ -1,6 +1,7 @@
 package fanheater.src.manager;
 import config.Components;
 import config.Settings;
+import config.Simulations;
 import fanheater.src.heater.Heater;
 import fanheater.src.heater.HeaterLevel;
 import fanheater.src.heater.HeaterStatus;
@@ -11,6 +12,8 @@ import fanheater.src.simulation.RoomTemperatureSimulation;
 import fanheater.src.manager.StatusManager;
 import fanheater.src.manager.LevelManager;
 import manager.SettingsManager;
+import sensor.TimeSensor;
+import simulation.TimeSimulation;
 
 /**
  * Manager class for the components of the heater
@@ -18,10 +21,14 @@ import manager.SettingsManager;
 public class ComponentsManager {
     
     private final Heater heater;
-    private final RoomTemperatureSimulation roomTemperatureSimulation;
     private final RoomTemperatureSensor roomTemperatureSensor;
-    private final FanHeaterTemperatureSimulation fanHeaterTemperatureSimulation;
     private final InternalTemperatureSensor internalTemperatureSensor;
+    private final TimeSensor timeSensor;
+
+    //simulations
+    private final RoomTemperatureSimulation roomTemperatureSimulation;
+    private final FanHeaterTemperatureSimulation fanHeaterTemperatureSimulation;
+    private final TimeSimulation timeSimulation;
 
     private final StatusManager statusManager = new StatusManager();
     private final LevelManager levelManager = new LevelManager();
@@ -42,12 +49,17 @@ public class ComponentsManager {
      * @param components all hardware components
      * @param settings present settings
      */
-    public ComponentsManager(Components components, Settings settings) {
+    public ComponentsManager(Components components, Simulations simulations, Settings settings) {
         this.heater = components.heater;
-        this.roomTemperatureSimulation = components.roomTemperatureSimulation;
         this.roomTemperatureSensor = components.roomTemperatureSensor;
-        this.fanHeaterTemperatureSimulation = components.fanHeaterTemperatureSimulation;
         this.internalTemperatureSensor = components.internalTemperatureSensor;
+        this.timeSensor = components.timeSensor;
+
+        //simulations
+        this.roomTemperatureSimulation = simulations.roomTemperatureSimulation;
+        this.fanHeaterTemperatureSimulation = simulations.fanHeaterTemperatureSimulation;
+        this.timeSimulation = simulations.timeSimulation;
+
 
         targetTemperature = settings.TARGET_TEMPERATURE;
         energySaving = settings.ENERGY_SAVING;
@@ -65,11 +77,16 @@ public class ComponentsManager {
      */
     public void update(){
         checkForOverheating();
-        roomTemperatureSimulation.updateTemperature(heater.getCurrentLevel());
-        fanHeaterTemperatureSimulation.updateTemperature(heater.getCurrentLevel());
+        updateSimulations(); //simulations
         checkIfWindowOpen();
         checkForStatus();
         lastTemperatureMeasured = Math.round(roomTemperatureSensor.readCurrentTemperature()*100.0)/100.0;
+    }
+
+    private void updateSimulations(){
+        roomTemperatureSimulation.updateTemperature(heater.getCurrentLevel());
+        fanHeaterTemperatureSimulation.updateTemperature(heater.getCurrentLevel());
+        timeSimulation.updateTime();
     }
 
     /**
@@ -187,5 +204,13 @@ public class ComponentsManager {
      */
     public boolean isWindowOpen() {
         return windowOpenDetected;
+    }
+
+    public int getMinutes(){
+        return timeSensor.getMinutes();
+    }
+
+    public int getHours(){
+        return timeSensor.getHours();
     }
 }

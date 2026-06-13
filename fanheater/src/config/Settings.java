@@ -12,14 +12,6 @@ public class Settings {
     public final double PUFFER_DEVICE_TEMPERATURE;
     public final double WINDOW_OPEN_THRESHOLD;
 
-    public Settings (double targetTemp, boolean energySaving, double maxTempRoom, double maxTempInternal, double pufferDeviceTemp, double windowOpenThreshold) {
-        TARGET_TEMPERATURE = targetTemp;
-        ENERGY_SAVING = energySaving;
-        MAX_TEMPERATURE_ROOM = maxTempRoom;
-        MAX_TEMPERATURE_INTERNAL = maxTempInternal;
-        PUFFER_DEVICE_TEMPERATURE = pufferDeviceTemp;
-        WINDOW_OPEN_THRESHOLD = windowOpenThreshold;
-    }
 
     public Settings (String filepath) {
 
