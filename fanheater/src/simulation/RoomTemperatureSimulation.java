@@ -12,6 +12,7 @@ public class RoomTemperatureSimulation {
     private final double maxTemperature;
     private final double outsideTemperature;
     private boolean windowOpen;
+    private int windowOpenDecreaseRate;
 
     /**
      * Constructure of room temperature simulator
@@ -20,11 +21,12 @@ public class RoomTemperatureSimulation {
      * @param maxTemperature maximal temperature the simulation can display
      * @param outsideTemperature the temperature outside and min temperature of the room
      */
-    public RoomTemperatureSimulation(double currentRoomTemperature, double temperatureDecreaseRate, double maxTemperature, double outsideTemperature) {
+    public RoomTemperatureSimulation(double currentRoomTemperature, double temperatureDecreaseRate, double maxTemperature, double outsideTemperature, int windowOpenDecreaseRate) {
         this.currentRoomTemperature = currentRoomTemperature;
         this.temperatureDecreaseRate = temperatureDecreaseRate;
         this.maxTemperature = maxTemperature;
         this.outsideTemperature = outsideTemperature;
+        this.windowOpenDecreaseRate = windowOpenDecreaseRate;
         windowOpen = false;
     }
 
@@ -34,7 +36,7 @@ public class RoomTemperatureSimulation {
      */
     public void updateTemperature(HeaterLevel currentLevel) {
         if (windowOpen && currentRoomTemperature > outsideTemperature) {
-            currentRoomTemperature -= temperatureDecreaseRate*5; //magic number !
+            currentRoomTemperature -= temperatureDecreaseRate*windowOpenDecreaseRate;
             if (currentRoomTemperature < outsideTemperature) {
                 currentRoomTemperature =  outsideTemperature;
             }

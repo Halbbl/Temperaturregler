@@ -28,6 +28,7 @@ public class Main {
         final double INITIAL_ROOM_TEMPERATURE = 18.0;
         final double MAX_TEMPERATURE_ROOM = 50.0;
         final double OUTSIDE_TEMPERATURE = 8.0;
+        final int WINDOW_OPEN_DECREASE_RATE = 5;
 
         //for device temperature simulation
         final double START_TEMPERATURE_DEVICE = 20.0;
@@ -43,7 +44,7 @@ public class Main {
         ComponentsManager componentsManager;
 
 
-        roomTemperatureSimulation = new RoomTemperatureSimulation(INITIAL_ROOM_TEMPERATURE, ROOM_TEMPERATURE_DECREASE_RATE, MAX_TEMPERATURE_ROOM, OUTSIDE_TEMPERATURE);
+        roomTemperatureSimulation = new RoomTemperatureSimulation(INITIAL_ROOM_TEMPERATURE, ROOM_TEMPERATURE_DECREASE_RATE, MAX_TEMPERATURE_ROOM, OUTSIDE_TEMPERATURE, WINDOW_OPEN_DECREASE_RATE);
         roomTemperatureSensor = new RoomTemperatureSensor(roomTemperatureSimulation);
         fanHeaterTemperatureSimulation = new FanHeaterTemperatureSimulation(START_TEMPERATURE_DEVICE, DEVICE_TEMPERATURE_DECREASE_RATE);
         internalTemperatureSensor = new InternalTemperatureSensor(fanHeaterTemperatureSimulation);

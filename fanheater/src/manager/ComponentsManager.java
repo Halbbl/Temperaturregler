@@ -116,7 +116,6 @@ public class ComponentsManager {
         levelManager.updateLevel(getCurrentRoomTemperature(), getTargetTemperature(), overheated, windowOpenDetected, energySaving);
         heater.setCurrentLevel(levelManager.getCurrentLevel());
         statusManager.updateStatus(getHeaterLevel(), overheated, windowOpenDetected);
-        System.out.println("Level: " +  heater.getCurrentLevel() + ", Status: " + getHeaterStatus() + "; Temp: " + getCurrentRoomTemperature());
     }
 
     private void checkForOverheating(){
