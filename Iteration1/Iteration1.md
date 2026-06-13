@@ -19,9 +19,9 @@ das spätere Arbeiten geachtet.
 
 **Logik:**
 
-Req. 1.1: Automatisches aktivieren des Heizlüfters wenn Raumtemperatur max. 1°C kälter ([Quelle](RechercheErgbnisse.md)) ist als gewünschte Temperatur  <br>
+Req. 1.1: Automatisches aktivieren des Heizlüfters wenn Raumtemperatur max. 1°C kälter ([Quelle](../RechercheErgbnisse.md)) ist als gewünschte Temperatur  <br>
 Req. 1.2: Automatisches deaktivieren des Heizlüfters bei erreichen der gewünschten Temperatur <br>
-Req. 1.3: Halten der gewünschten Temperatur mit Schwankungen bis max. 1°C ([Quelle](RechercheErgbnisse.md)) <br>
+Req. 1.3: Halten der gewünschten Temperatur mit Schwankungen bis max. 1°C ([Quelle](../RechercheErgbnisse.md)) <br>
 Req. 1.4: Strickte Trennung der zentralen Logikkomponente vom restlichen Code
 
 

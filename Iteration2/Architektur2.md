@@ -1,6 +1,6 @@
 # Architektur
 
-Hinsichtlich der Architektur hat sich in der zweiten Iteration nichts geändert, wodurch in dieser Datei nichts anderes steht als in [Architektur1](./Iteration1/Architektur1.md).
+Hinsichtlich der Architektur hat sich in der zweiten Iteration nichts geändert, wodurch in dieser Datei nichts anderes steht als in [Architektur1](../Iteration1/Architektur1.md).
 
 ## Architekturmodell
 
@@ -13,7 +13,7 @@ Hinsichtlich der Architektur hat sich in der zweiten Iteration nichts geändert,
 
 ## Komponentendiagramm
 
-![Komponentendiagramm](fanheater/references/Componentsdiagram.png)
+![Komponentendiagramm](../fanheater/references/Componentsdiagram.png)
 
 ### Verantwortlichkeiten der Komponenten
 
@@ -37,3 +37,6 @@ Hinsichtlich der Architektur hat sich in der zweiten Iteration nichts geändert,
 | Codeanalyse              | Sonar Qube         | IntelliJ Idea Plugin, einfache Bedienung                         |
 | Test-Framework           | JUnit              | Standard für Java, einfach, erweiterbar                          |
 | Frameworks, Bibliotheken |                    |                                                                  |
+| KI¹                      | ChatGPT + Claude   | Gute Formulierungen und Quellen                                  |
+
+¹KI wurde im Rahmen dieses Projekts ausschließlich für die Formulierung der Dokumentation, der Javadoc Kommentare und für das Suchen von Quellen benutzt

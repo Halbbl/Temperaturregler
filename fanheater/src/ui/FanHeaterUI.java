@@ -25,6 +25,7 @@ public class FanHeaterUI {
         frame.setSize(400, 450);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout(5, 1, 10, 10));
+        frame.setLocationRelativeTo(null);
 
         JLabel title = new JLabel("Heizlüfter Steuerung",
                 SwingConstants.CENTER);
