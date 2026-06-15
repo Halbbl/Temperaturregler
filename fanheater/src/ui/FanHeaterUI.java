@@ -24,7 +24,7 @@ public class FanHeaterUI {
         frame = new JFrame("Heizlüfter");
         frame.setSize(400, 450);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout(5, 1, 10, 10));
+        frame.setLayout(new GridLayout(6, 1, 10, 10));
         frame.setLocationRelativeTo(null);
 
         JLabel title = new JLabel("Heizlüfter Steuerung",
@@ -45,10 +45,13 @@ public class FanHeaterUI {
                         SwingConstants.CENTER
                 );
 
+        JLabel currentTime = new JLabel("Uhrzeit: " + componentsManager.getTime() + " Uhr", SwingConstants.CENTER);
+
         //displays the current status of the heater
         JLabel status = new JLabel("Status: " + componentsManager.getHeaterStatus().getMessage(), SwingConstants.CENTER);
 
         activityPanel.add(currentTemperature);
+        activityPanel.add(currentTime);
         activityPanel.add(status);
 
 
@@ -146,11 +149,108 @@ public class FanHeaterUI {
         settingsButtonPanel.add(energySavingLabel);
 
 
+        JPanel timerButtonPanel = new JPanel();
+        JButton timerButton = new JButton("Set Timer");
+        timerButtonPanel.add(timerButton);
+        timerButton.addActionListener(e -> {
+            frame.remove(centerPanel);
+            frame.remove(settingsButtonPanel);
+            frame.remove(timerButtonPanel);
+
+            JPanel timerPanel = new JPanel();
+            timerPanel.setLayout(new GridLayout(5, 2, 10, 10));
+
+            // Zeit-Eingabe (Stunde und Minute)
+            JLabel timeLabel = new JLabel("Zeit (HH:mm):");
+            JSpinner hourSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 23, 1));
+            JSpinner minuteSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 59, 1));
+
+            JPanel timeInputPanel = new JPanel();
+            timeInputPanel.add(hourSpinner);
+            timeInputPanel.add(new JLabel(":"));
+            timeInputPanel.add(minuteSpinner);
+
+            // Temperatur-Eingabe
+            JLabel tempLabel = new JLabel("Zieltemperatur (°C):");
+            JTextField timerTemperatureField = new JTextField(5);
+
+            // Checkbox: Heater ausschalten statt Temperatur einstellen
+            JCheckBox turnOffCheckBox = new JCheckBox("Heater zu dieser Zeit ausschalten");
+            turnOffCheckBox.addActionListener(checkboxEvent -> {
+                boolean selected = turnOffCheckBox.isSelected();
+                timerTemperatureField.setEnabled(!selected);
+                tempLabel.setEnabled(!selected);
+            });
+
+            // Speichern und Zurück Buttons
+            JButton saveTimerButton = new JButton("Timer speichern");
+            JButton backButton = new JButton("Zurück");
+
+            timerPanel.add(timeLabel);
+            timerPanel.add(timeInputPanel);
+            timerPanel.add(tempLabel);
+            timerPanel.add(timerTemperatureField);
+            timerPanel.add(new JLabel());
+            timerPanel.add(turnOffCheckBox);
+            timerPanel.add(saveTimerButton);
+            timerPanel.add(backButton);
+
+            frame.add(title);
+            frame.add(activityPanel);
+            frame.add(timerPanel);
+
+            frame.revalidate();
+            frame.repaint();
+
+            saveTimerButton.addActionListener(saveEvent -> {
+                int hour = (int) hourSpinner.getValue();
+                int minute = (int) minuteSpinner.getValue();
+                boolean turnOff = turnOffCheckBox.isSelected();
+
+                if (turnOff) {
+                    componentsManager.addTimerEntry(hour, minute, 0.0);
+                } else {
+                    try {
+                        double timerTargetTemperature = Double.parseDouble(timerTemperatureField.getText());
+                        componentsManager.addTimerEntry(hour, minute, timerTargetTemperature);
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(
+                                frame,
+                                "Bitte eine gültige Zahl eingeben!"
+                        );
+                        return;
+                    }
+                }
+
+                // zurück zur Hauptansicht
+                frame.remove(timerPanel);
+                frame.add(centerPanel);
+                frame.add(saveButtonPanel);
+                frame.add(settingsButtonPanel);
+                frame.add(timerButtonPanel);
+                frame.revalidate();
+                frame.repaint();
+            });
+
+            backButton.addActionListener(backEvent -> {
+                frame.remove(timerPanel);
+                frame.add(centerPanel);
+                frame.add(saveButtonPanel);
+                frame.add(settingsButtonPanel);
+                frame.add(timerButtonPanel);
+                frame.revalidate();
+                frame.repaint();
+            });
+        });
+
+
+
         frame.add(title);
         frame.add(activityPanel);
         frame.add(centerPanel);
         frame.add(saveButtonPanel);
         frame.add(settingsButtonPanel);
+        frame.add(timerButtonPanel);
 
         // after saving let change temperature button appear and save button disappear
         setTargetTemperatureButton.addActionListener(e -> {
@@ -232,6 +332,9 @@ public class FanHeaterUI {
                             + Math.round(currentTemp * 10.0) / 10.0
                             + "°C"
             );
+
+            String timeNow = componentsManager.getTime();
+            currentTime.setText("Uhrzeit: " + timeNow + " Uhr");
 
             HeaterStatus heaterStatus = componentsManager.getHeaterStatus();
             status.setText("Status: " + heaterStatus.getMessage());

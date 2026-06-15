@@ -10,12 +10,10 @@ public class TimeSensor {
     }
 
     public int getMinutes(){
-        int[] time = timeSimulation.getTime();
-        return time[1];
+        return timeSimulation.getMinutes();
     }
 
     public int getHours(){
-        int[] time = timeSimulation.getTime();
-        return time[0];
+         return timeSimulation.getHours();
     }
 }

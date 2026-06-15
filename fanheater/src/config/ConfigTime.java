@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigTime {
-    public int[] time;
+    public int minute;
+    public int hour;
 
     public ConfigTime(String filepath) {
         Properties props = new Properties();
@@ -16,7 +17,10 @@ public class ConfigTime {
             throw new RuntimeException("Failed to load settings file: " + filepath, e);
         }
 
-        int[] time = new int[]{Integer.parseInt(props.getProperty("targetTemperature"))};
-        this.time = time;
+        int minute = Integer.parseInt(props.getProperty("minute"));
+        int hour = Integer.parseInt(props.getProperty("hour"));
+
+        this.minute = minute;
+        this.hour = hour;
     }
 }

@@ -12,6 +12,7 @@ import fanheater.src.simulation.RoomTemperatureSimulation;
 import fanheater.src.manager.StatusManager;
 import fanheater.src.manager.LevelManager;
 import manager.SettingsManager;
+import manager.TimerManager;
 import sensor.TimeSensor;
 import simulation.TimeSimulation;
 
@@ -33,6 +34,7 @@ public class ComponentsManager {
     private final StatusManager statusManager = new StatusManager();
     private final LevelManager levelManager = new LevelManager();
     private final SettingsManager settingsManager = new SettingsManager(System.getProperty("user.dir") + "/fanheater/src/config/settings.properties");
+    private final TimerManager timerManager = new TimerManager(System.getProperty("user.dir") + "/fanheater/src/config/timers.properties");
 
     private final double MAX_INTERNAL_TEMPERATURE;
     private final double PUFFER_DEVICE_TEMPERATURE;
@@ -80,6 +82,7 @@ public class ComponentsManager {
         updateSimulations(); //simulations
         checkIfWindowOpen();
         checkForStatus();
+        checkTimers();
         lastTemperatureMeasured = Math.round(roomTemperatureSensor.readCurrentTemperature()*100.0)/100.0;
     }
 
@@ -206,11 +209,42 @@ public class ComponentsManager {
         return windowOpenDetected;
     }
 
-    public int getMinutes(){
+
+    //Timer
+    public String getTime(){
+        String time = "";
+        if (getHours() < 10){
+            time += "0" +  getHours();
+        } else {
+            time += getHours();
+        }
+        if (getMinutes() < 10){
+            time += ":0" +  getMinutes();
+        }  else {
+            time += ":" + getMinutes();
+        }
+        return time;
+    }
+
+    private int getMinutes(){
         return timeSensor.getMinutes();
     }
 
-    public int getHours(){
+    private int getHours(){
         return timeSensor.getHours();
+    }
+
+    public void addTimerEntry(int hour, int minute, double targetTemp){
+        timerManager.addTimerEntry(hour, minute, targetTemp);
+    }
+
+    private void checkTimers(){
+        for(int i = 1; i <= timerManager.getTimerCount(); i++){
+            String[] timer = timerManager.getTimerEntry(i);
+            if (Integer.parseInt(timer[0]) == getHours() && Integer.parseInt(timer[1]) == getMinutes()){
+                targetTemperature = Double.parseDouble(timer[2]);
+                break;
+            }
+        }
     }
 }
