@@ -240,11 +240,23 @@ public class ComponentsManager {
 
     private void checkTimers(){
         for(int i = 1; i <= timerManager.getTimerCount(); i++){
-            String[] timer = timerManager.getTimerEntry(i);
+            String[] timer = getTimerEntry(i);
             if (Integer.parseInt(timer[0]) == getHours() && Integer.parseInt(timer[1]) == getMinutes()){
                 targetTemperature = Double.parseDouble(timer[2]);
                 break;
             }
         }
+    }
+
+    public int getTimerCount(){
+        return timerManager.getTimerCount();
+    }
+
+    public String[] getTimerEntry(int num){
+        return timerManager.getTimerEntry(num);
+    }
+
+    public void removeTimerEntry(int num){
+        timerManager.removeTimerEntry(num);
     }
 }

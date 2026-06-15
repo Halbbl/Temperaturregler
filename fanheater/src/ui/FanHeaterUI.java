@@ -156,12 +156,25 @@ public class FanHeaterUI {
             frame.remove(centerPanel);
             frame.remove(settingsButtonPanel);
             frame.remove(timerButtonPanel);
+            frame.remove(saveButtonPanel);
 
             JPanel timerPanel = new JPanel();
-            timerPanel.setLayout(new GridLayout(5, 2, 10, 10));
+            timerPanel.setLayout(new BorderLayout(10, 10));
+
+            // Liste der vorhandenen Timer
+            JPanel timerListPanel = new JPanel();
+            timerListPanel.setLayout(new BoxLayout(timerListPanel, BoxLayout.Y_AXIS));
+
+            JScrollPane timerListScroll = new JScrollPane(timerListPanel);
+            timerListScroll.setBorder(BorderFactory.createTitledBorder("Vorhandene Timer"));
+            timerListScroll.setPreferredSize(new Dimension(350, 120));
+
+            // Eingabebereich für neuen Timer
+            JPanel timerInputPanel = new JPanel();
+            timerInputPanel.setLayout(new GridLayout(5, 2, 10, 10));
 
             // Zeit-Eingabe (Stunde und Minute)
-            JLabel timeLabel = new JLabel("Zeit (HH:mm):");
+            JLabel timeLabel = new JLabel("Zeit (HH:mm):", SwingConstants.CENTER);
             JSpinner hourSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 23, 1));
             JSpinner minuteSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 59, 1));
 
@@ -171,7 +184,7 @@ public class FanHeaterUI {
             timeInputPanel.add(minuteSpinner);
 
             // Temperatur-Eingabe
-            JLabel tempLabel = new JLabel("Zieltemperatur (°C):");
+            JLabel tempLabel = new JLabel("Zieltemperatur (°C):", SwingConstants.CENTER);
             JTextField timerTemperatureField = new JTextField(5);
 
             // Checkbox: Heater ausschalten statt Temperatur einstellen
@@ -186,14 +199,62 @@ public class FanHeaterUI {
             JButton saveTimerButton = new JButton("Timer speichern");
             JButton backButton = new JButton("Zurück");
 
-            timerPanel.add(timeLabel);
-            timerPanel.add(timeInputPanel);
-            timerPanel.add(tempLabel);
-            timerPanel.add(timerTemperatureField);
-            timerPanel.add(new JLabel());
-            timerPanel.add(turnOffCheckBox);
-            timerPanel.add(saveTimerButton);
-            timerPanel.add(backButton);
+            timerInputPanel.add(timeLabel);
+            timerInputPanel.add(timeInputPanel);
+            timerInputPanel.add(tempLabel);
+            timerInputPanel.add(timerTemperatureField);
+            timerInputPanel.add(new JLabel());
+            timerInputPanel.add(turnOffCheckBox);
+            timerInputPanel.add(saveTimerButton);
+            timerInputPanel.add(backButton);
+
+            timerPanel.add(timerListScroll, BorderLayout.NORTH);
+            timerPanel.add(timerInputPanel, BorderLayout.CENTER);
+
+            // Wrapper-Array, damit das Lambda sich selbst rekursiv aufrufen kann
+            final Runnable[] refreshTimerListWrapper = new Runnable[1];
+
+            // Methode zum (Neu-)Aufbau der Timer-Liste
+            Runnable refreshTimerList = () -> {
+                timerListPanel.removeAll();
+                int count = componentsManager.getTimerCount();
+                for (int i = 1; i <= count; i++) {
+                    String[] entry = componentsManager.getTimerEntry(i);
+                    int h = Integer.parseInt(entry[0]);
+                    int m = Integer.parseInt(entry[1]);
+                    double temp = Double.parseDouble(entry[2]);
+
+                    String timeText = String.format("%02d:%02d", h, m);
+                    String description;
+                    if (temp == 0.0) {
+                        description = timeText + " - Heater ausschalten";
+                    } else {
+                        description = timeText + " - Zieltemperatur: " + temp + "°C";
+                    }
+
+                    JPanel entryPanel = new JPanel(new BorderLayout(5, 0));
+                    JLabel entryLabel = new JLabel(description);
+                    JButton deleteButton = new JButton("Löschen");
+
+                    final int entryNum = i;
+                    deleteButton.addActionListener(deleteEvent -> {
+                        componentsManager.removeTimerEntry(entryNum);
+                        // Liste danach neu aufbauen (Indizes verschieben sich)
+                        refreshTimerListWrapper[0].run();
+                    });
+
+                    entryPanel.add(entryLabel, BorderLayout.CENTER);
+                    entryPanel.add(deleteButton, BorderLayout.EAST);
+                    timerListPanel.add(entryPanel);
+                }
+
+                timerListPanel.revalidate();
+                timerListPanel.repaint();
+            };
+
+            // Wrapper, damit refreshTimerList sich selbst rekursiv aufrufen kann
+            refreshTimerListWrapper[0] = refreshTimerList;
+            refreshTimerList.run();
 
             frame.add(title);
             frame.add(activityPanel);
@@ -206,6 +267,21 @@ public class FanHeaterUI {
                 int hour = (int) hourSpinner.getValue();
                 int minute = (int) minuteSpinner.getValue();
                 boolean turnOff = turnOffCheckBox.isSelected();
+
+                // Sperre: gleiche Uhrzeit darf nicht doppelt vergeben werden
+                int existingCount = componentsManager.getTimerCount();
+                for (int i = 1; i <= existingCount; i++) {
+                    String[] entry = componentsManager.getTimerEntry(i);
+                    int existingHour = Integer.parseInt(entry[0]);
+                    int existingMinute = Integer.parseInt(entry[1]);
+                    if (existingHour == hour && existingMinute == minute) {
+                        JOptionPane.showMessageDialog(
+                                frame,
+                                "Für diese Uhrzeit existiert bereits ein Timer!"
+                        );
+                        return;
+                    }
+                }
 
                 if (turnOff) {
                     componentsManager.addTimerEntry(hour, minute, 0.0);
@@ -222,14 +298,14 @@ public class FanHeaterUI {
                     }
                 }
 
-                // zurück zur Hauptansicht
-                frame.remove(timerPanel);
-                frame.add(centerPanel);
-                frame.add(saveButtonPanel);
-                frame.add(settingsButtonPanel);
-                frame.add(timerButtonPanel);
-                frame.revalidate();
-                frame.repaint();
+                // Liste aktualisieren, Eingabefelder zurücksetzen
+                refreshTimerListWrapper[0].run();
+                timerTemperatureField.setText("");
+                hourSpinner.setValue(0);
+                minuteSpinner.setValue(0);
+                turnOffCheckBox.setSelected(false);
+                timerTemperatureField.setEnabled(true);
+                tempLabel.setEnabled(true);
             });
 
             backButton.addActionListener(backEvent -> {
@@ -318,7 +394,6 @@ public class FanHeaterUI {
                     public void actionPerformed(ActionEvent e) {
 
                         componentsManager.updateWindow();
-                        //System.out.println("Window open: " +  componentsManager.isWindowOpen());
                     }
                 }
         );

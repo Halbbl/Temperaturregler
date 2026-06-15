@@ -23,4 +23,6 @@ public class ConfigTime {
         this.minute = minute;
         this.hour = hour;
     }
+
+
 }
