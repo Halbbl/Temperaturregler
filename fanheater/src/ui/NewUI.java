@@ -159,34 +159,29 @@ public class NewUI {
 
                JPanel newTimerPanel = new JPanel(new GridLayout(1, 2, 10, 10));
 
-               JLabel newTimeHourLabel = new JLabel(String.format("%02d:", newTimerHour),  SwingConstants.RIGHT);
-               newTimeHourLabel.setFont(tempFont);
-               JLabel newTimeMinuteLabel = new JLabel(String.format("%02d Uhr", newTimerMinute),  SwingConstants.LEFT);
-               newTimeMinuteLabel.setFont(tempFont);
-               JLabel newTemp = new JLabel(String.format("%.2f °C", newTimerTargetTemperature));
+               JLabel newTime = new JLabel(String.format("%02d:%02d Uhr", newTimerHour, newTimerMinute),  SwingConstants.CENTER);
+               newTime.setFont(tempFont);
+               JLabel newTemp = new JLabel(String.format("%.2f °C", newTimerTargetTemperature),  SwingConstants.CENTER);
                newTemp.setFont(tempFont);
 
                //timer for text blinking when changing something
                Timer selectionBlinkTimer = new Timer(800, i -> {
                    if (newTimerSelection == 1){
                        newTemp.setText(String.format("%.2f °C", newTimerTargetTemperature));
-                       newTimeMinuteLabel.setText(String.format("%02d Uhr", newTimerMinute));
-                       if (newTimeHourLabel.getText().equals("  :")){
-                           newTimeHourLabel.setText(String.format("%02d:", newTimerHour));
+                       if (newTime.getText().equals(String.format("___:%02d Uhr", newTimerMinute))){
+                           newTime.setText(String.format("%02d:%02d Uhr", newTimerHour, newTimerMinute));
                        } else {
-                           newTimeHourLabel.setText("  :");
+                           newTime.setText(String.format("___:%02d Uhr", newTimerMinute));
                        }
                    } else if (newTimerSelection == 2){
-                       newTimeHourLabel.setText(String.format("%02d:", newTimerHour));
                        newTemp.setText(String.format("%.2f °C", newTimerTargetTemperature));
-                       if (newTimeMinuteLabel.getText().equals("     Uhr")){
-                           newTimeMinuteLabel.setText(String.format("%02d Uhr", newTimerMinute));
+                       if (newTime.getText().equals(String.format("%02d:___ Uhr", newTimerHour))){
+                           newTime.setText(String.format("%02d:%02d Uhr", newTimerHour, newTimerMinute));
                        } else {
-                           newTimeMinuteLabel.setText("     Uhr");
+                           newTime.setText((String.format("%02d:___ Uhr", newTimerHour)));
                        }
                    } else {
-                       newTimeHourLabel.setText(String.format("%02d:", newTimerHour));
-                       newTimeMinuteLabel.setText(String.format("%02d Uhr", newTimerMinute));
+                       newTime.setText(String.format("%02d:%02d Uhr", newTimerHour, newTimerMinute));
                        if (newTemp.getText().equals("         °C")){
                            newTemp.setText(String.format("%.2f °C", newTimerTargetTemperature));
                        } else {
@@ -197,8 +192,7 @@ public class NewUI {
 
                selectionBlinkTimer.start();
 
-               newTimerPanel.add(newTimeHourLabel);
-               newTimerPanel.add(newTimeMinuteLabel);
+               newTimerPanel.add(newTime);
                newTimerPanel.add(newTemp);
 
                JPanel newTimerButtonPanel = new JPanel(new GridLayout(1, 6, 10, 10));
@@ -254,8 +248,7 @@ public class NewUI {
                            newTimerTargetTemperature = componentsManager.getMaxRoomTemperature();
                        }
                    }
-                   newTimeHourLabel.setText(String.format("%02d:", newTimerHour));
-                   newTimeMinuteLabel.setText(String.format("%02d Uhr", newTimerMinute));
+                   newTime.setText(String.format("%02d:%02d Uhr", newTimerHour, newTimerMinute));
                    newTemp.setText(String.format("%.2f °C", newTimerTargetTemperature));
                });
 
@@ -278,8 +271,7 @@ public class NewUI {
                            newTimerTargetTemperature = 0;
                        }
                    }
-                   newTimeHourLabel.setText(String.format("%02d:", newTimerHour));
-                   newTimeMinuteLabel.setText(String.format("%02d Uhr", newTimerMinute));
+                   newTime.setText(String.format("%02d:%02d Uhr", newTimerHour, newTimerMinute));
                    newTemp.setText(String.format("%.2f °C", newTimerTargetTemperature));
                });
 
