@@ -38,6 +38,11 @@ public class TimerManager {
 
     public String[] getTimerEntry(int num){
         String timer = props.getProperty("timer" + num);
+
+        if (timer == null) {
+            return null;
+        }
+
         return timer.split(",");
     }
 
@@ -46,16 +51,10 @@ public class TimerManager {
     }
 
     public void removeTimerEntry(int num) {
-        props.remove("timer" + num);
-        reindexTimers(num);
-        save();
-    }
-
-    private void reindexTimers(int rmvTimerIndex) {
-        for (int i = rmvTimerIndex; i <= getTimerCount()-1; i++){
-            props.setProperty("timer" + i, props.getProperty("timer" + i+1));
+        for (int i = num; i <= getTimerCount()-1; i++){
+            props.setProperty("timer" + i, props.getProperty("timer" + (i+1)));
         }
-        props.remove(getTimerCount());
+        props.remove("timer" + getTimerCount());
         save();
     }
 }

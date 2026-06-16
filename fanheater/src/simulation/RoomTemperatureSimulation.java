@@ -32,16 +32,16 @@ public class RoomTemperatureSimulation {
      * Updates the room temperature depending on if the heater is active or not
      * @param currentLevel level at which the heater is heating
      */
-    public void updateTemperature(HeaterLevel currentLevel) {
+    public void updateTemperature(HeaterLevel currentLevel, boolean on) {
         if (windowOpen && currentRoomTemperature > outsideTemperature) {
             currentRoomTemperature -= temperatureDecreaseRate*windowOpenDecreaseRate;
             if (currentRoomTemperature < outsideTemperature) {
                 currentRoomTemperature =  outsideTemperature;
             }
         } else {
-            if (!(currentLevel.equals(HeaterLevel.OFF)) && currentRoomTemperature < maxTemperature) {
+            if (!(currentLevel.equals(HeaterLevel.OFF)) && currentRoomTemperature < maxTemperature && on) {
                 currentRoomTemperature += currentLevel.getHeatingPower();
-            } else if ((currentLevel.equals(HeaterLevel.OFF)) && currentRoomTemperature > outsideTemperature) {
+            } else if (((currentLevel.equals(HeaterLevel.OFF)) && currentRoomTemperature > outsideTemperature) || !on) {
                 currentRoomTemperature -= temperatureDecreaseRate;
             }
             if (currentRoomTemperature < outsideTemperature) {

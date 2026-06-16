@@ -39,12 +39,14 @@ public class ComponentsManager {
     private final double MAX_INTERNAL_TEMPERATURE;
     private final double PUFFER_DEVICE_TEMPERATURE;
     private final double WINDOW_OPEN_THRESHOLD;
+    private final double MAX_ROOM_TEMPERATURE;
 
     private double targetTemperature;
     private double lastTemperatureMeasured;
     private boolean overheated;
     private boolean energySaving;
     private boolean windowOpenDetected;
+    private boolean on;
 
     /**
      * Constructur for components manager
@@ -68,7 +70,9 @@ public class ComponentsManager {
         MAX_INTERNAL_TEMPERATURE = settings.MAX_TEMPERATURE_INTERNAL;
         PUFFER_DEVICE_TEMPERATURE = settings.PUFFER_DEVICE_TEMPERATURE;
         WINDOW_OPEN_THRESHOLD = settings.WINDOW_OPEN_THRESHOLD;
+        MAX_ROOM_TEMPERATURE = settings.MAX_TEMPERATURE_ROOM;
 
+        on = true;
         overheated = false;
         windowOpenDetected = false;
         lastTemperatureMeasured = Math.round(roomTemperatureSensor.readCurrentTemperature()*100.0)/100.0;
@@ -78,16 +82,21 @@ public class ComponentsManager {
      * checks if heater needs to be activated, updates the temperature simulations and checks for overheating
      */
     public void update(){
-        checkForOverheating();
+        if (isOn()){
+            checkForOverheating();
+        }
         updateSimulations(); //simulations
-        checkIfWindowOpen();
-        checkForStatus();
-        checkTimers();
-        lastTemperatureMeasured = Math.round(roomTemperatureSensor.readCurrentTemperature()*100.0)/100.0;
+        if (isOn()){
+            checkIfWindowOpen();
+            checkForStatus();
+            checkTimers();
+            lastTemperatureMeasured = Math.round(roomTemperatureSensor.readCurrentTemperature()*100.0)/100.0;
+        }
+        System.out.println("CurrTemp: " + getCurrentRoomTemperature() + ", Target: " + getTargetTemperature());
     }
 
     private void updateSimulations(){
-        roomTemperatureSimulation.updateTemperature(heater.getCurrentLevel());
+        roomTemperatureSimulation.updateTemperature(heater.getCurrentLevel(), isOn());
         fanHeaterTemperatureSimulation.updateTemperature(heater.getCurrentLevel());
         timeSimulation.updateTime();
     }
@@ -135,7 +144,7 @@ public class ComponentsManager {
         return statusManager.getCurrentStatus();
     }
 
-    private double getTargetTemperature(){
+    public double getTargetTemperature(){
         return Math.round(targetTemperature*100.0)/100.0;
     }
 
@@ -258,5 +267,21 @@ public class ComponentsManager {
 
     public void removeTimerEntry(int num){
         timerManager.removeTimerEntry(num);
+    }
+
+    public void turnOff(){
+        on = false;
+    }
+
+    public void turnOn(){
+        on = true;
+    }
+
+    public boolean isOn(){
+        return on;
+    }
+
+    public double getMaxRoomTemperature(){
+        return MAX_ROOM_TEMPERATURE;
     }
 }
