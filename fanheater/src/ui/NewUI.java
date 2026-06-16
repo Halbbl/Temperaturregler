@@ -11,8 +11,9 @@ public class NewUI {
     private double targetTemperature;
     private boolean changing;
     private boolean on;
+
+
     private int currentTimerCount;
-    private int timerCount;
     private int timerHour;
     private int timerMinute;
     private double timerTemperaure;
@@ -23,6 +24,10 @@ public class NewUI {
     private int newTimerHour;
     private int newTimerMinute;
     private double newTimerTargetTemperature;
+
+    //saving timer
+    private int saveSelection;
+    private final int MAX_SAVE_SELECTION = 3;
 
 
 
@@ -38,7 +43,6 @@ public class NewUI {
         changing = false;
         on = true;
         currentTimerCount = 1;
-        timerCount = componentsManager.getTimerCount();
         timerHour = 0;
         timerMinute = 0;
         timerTemperaure = 0.0;
@@ -46,6 +50,8 @@ public class NewUI {
         newTimerHour = 0;
         newTimerMinute = 0;
         newTimerTargetTemperature = 0.0;
+
+        saveSelection = 1;
 
         JFrame frame = new JFrame("Heizlüfter");
         frame.setSize(800, 600);
@@ -116,7 +122,6 @@ public class NewUI {
                frame.remove(timerButtonPanel);
                frame.add(titlePanel);
                frame.add(buttonPanel);
-
                frame.revalidate();
                frame.repaint();
            });
@@ -202,8 +207,122 @@ public class NewUI {
                backButtonTimerView.addActionListener(i ->{
                    frame.remove(newTimerPanel);
                    frame.remove(newTimerButtonPanel);
-                   frame.add(timerPanel);
-                   frame.add(timerButtonPanel);
+
+                   JPanel savePanel = new JPanel(new GridLayout(1, 3, 10, 10));
+
+                   JLabel back = new JLabel("Zurück", SwingConstants.CENTER);
+                   back.setFont(tempFont);
+
+                   JLabel save = new JLabel("Speichern",  SwingConstants.CENTER);
+                   save.setFont(tempFont);
+
+                   JLabel abort = new JLabel("Abbrechen", SwingConstants.CENTER);
+                   abort.setFont(tempFont);
+
+                   //timer for text blinking when changing something
+                   Timer saveSelectionBlinkTimer = new Timer(800, f -> {
+                       if (saveSelection == 1){
+                           save.setText("Speichern");
+                           abort.setText("Abbrechen");
+                           if (back.getText().isEmpty()){
+                               back.setText("Zurück");
+                           } else {
+                               back.setText("");
+                           }
+                       } else if (saveSelection == 2){
+                           abort.setText("Abbrechen");
+                           back.setText("Zurück");
+                           if (save.getText().isEmpty()){
+                               save.setText("Speichern");
+                           } else {
+                               save.setText("");
+                           }
+                       } else {
+                           back.setText("Zurück");
+                           save.setText("Speichern");
+                           if (abort.getText().isEmpty()){
+                               abort.setText("Abbrechen");
+                           } else {
+                               abort.setText("");
+                           }
+                       }
+                   });
+
+                   saveSelectionBlinkTimer.start();
+
+                   savePanel.add(back);
+                   savePanel.add(save);
+                   savePanel.add(abort);
+
+                   JPanel saveTimerButtonPanel = new JPanel(new GridLayout(1, 5, 10, 10));
+
+                   JButton saveTimerBackButton = new JButton("↵");
+                   saveTimerBackButton.setFont(buttonFont);
+                   saveTimerBackButton.addActionListener(d -> {
+                       if (saveSelection == 1) {
+                           frame.remove(saveTimerButtonPanel);
+                           frame.remove(savePanel);
+                           frame.add(timerPanel);
+                           frame.add(timerButtonPanel);
+                           newTimerHour = 0;
+                           newTimerMinute = 0;
+                           newTimerTargetTemperature = 0.0;
+                       } else if (saveSelection == 2) {
+                           componentsManager.addTimerEntry(newTimerHour, newTimerMinute, newTimerTargetTemperature);
+                           frame.remove(saveTimerButtonPanel);
+                           frame.remove(savePanel);
+                           frame.add(timerPanel);
+                           frame.add(timerButtonPanel);
+                           newTimerHour = 0;
+                           newTimerMinute = 0;
+                           newTimerTargetTemperature = 0.0;
+                           saveSelection = 1;
+                       } else {
+                           frame.remove(saveTimerButtonPanel);
+                           frame.remove(savePanel);
+                           frame.add(newTimerPanel);
+                           frame.add(newTimerButtonPanel);
+                           saveSelection = 1;
+                       }
+
+                       frame.revalidate();
+                       frame.repaint();
+                   });
+
+                   JButton saveTimerLeftButton = new JButton("←");
+                   saveTimerLeftButton.setFont(buttonFont);
+                   saveTimerLeftButton.addActionListener(d -> {
+                       saveSelection--;
+                       if (saveSelection == 0){
+                           saveSelection = MAX_SAVE_SELECTION;
+                       }
+                       saveSelectionBlinkTimer.restart();
+                   });
+
+                   JButton saveTimerRightButton = new JButton("→");
+                   saveTimerRightButton.setFont(buttonFont);
+                   saveTimerRightButton.addActionListener(d -> {
+                       saveSelection++;
+                       if (saveSelection > MAX_SAVE_SELECTION){
+                           saveSelection = 1;
+                       }
+                       saveSelectionBlinkTimer.restart();
+                   });
+
+                   JButton saveTimerPlusButton = new JButton("+");
+                   saveTimerPlusButton.setFont(buttonFont);
+
+                   JButton saveTimerMinusButton = new JButton("-");
+                   saveTimerMinusButton.setFont(buttonFont);
+
+                   saveTimerButtonPanel.add(saveTimerBackButton);
+                   saveTimerButtonPanel.add(saveTimerLeftButton);
+                   saveTimerButtonPanel.add(saveTimerRightButton);
+                   saveTimerButtonPanel.add(saveTimerPlusButton);
+                   saveTimerButtonPanel.add(saveTimerMinusButton);
+
+                   frame.add(savePanel);
+                   frame.add(saveTimerButtonPanel);
 
                    frame.revalidate();
                    frame.repaint();
