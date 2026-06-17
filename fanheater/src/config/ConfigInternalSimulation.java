@@ -4,15 +4,24 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Config for device temperature simulation
+ * Reads the config file
+ */
 public class ConfigInternalSimulation {
+    /**
+     * Starting temperature
+     */
     public final double INITIAL_TEMPERATURE;
+    /**
+     * Decrease rate of temperature
+     */
     public final double DECREASE_RATE;
 
-    public ConfigInternalSimulation(double initialTemperature, double decreaseRate) {
-        INITIAL_TEMPERATURE = initialTemperature;
-        DECREASE_RATE = decreaseRate;
-    }
-
+    /**
+     * Default Constructor
+     * @param filepath path to config
+     */
     public ConfigInternalSimulation(String filepath) {
         Properties prop = new Properties();
         try (FileReader reader = new FileReader(filepath)) {

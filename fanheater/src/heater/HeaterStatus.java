@@ -1,4 +1,4 @@
-package fanheater.src.heater;
+package heater;
 
 /**
  * Different heater status for the heater with messages

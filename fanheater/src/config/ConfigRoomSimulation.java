@@ -4,21 +4,43 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Config for room temperature simulation
+ * Reads simulation values from a config file
+ */
 public class ConfigRoomSimulation {
+
+    /**
+     * Starting room temperature
+     */
     public final double INITIAL_TEMPERATURE;
+
+    /**
+     * Normal temperature decrease rate
+     */
     public final double DECREASE_RATE;
+
+    /**
+     * Maximum room temperature
+     */
     public final double MAX_TEMPERATURE;
+
+    /**
+     * Outside temperature
+     */
     public final double OUTSIDE_TEMPERATURE;
+
+    /**
+     * Temperature decrease rate when the window is open
+     */
     public final double WINDOW_OPEN_DECREASE_RATE;
 
-    public ConfigRoomSimulation(double initialTemp, double decreaseRate, double maxTemp, double outsideTemp, double windowOpenDecreaseRate) {
-        INITIAL_TEMPERATURE = initialTemp;
-        DECREASE_RATE = decreaseRate;
-        MAX_TEMPERATURE = maxTemp;
-        OUTSIDE_TEMPERATURE = outsideTemp;
-        WINDOW_OPEN_DECREASE_RATE = windowOpenDecreaseRate;
-    }
-
+    /**
+     * Default constructor
+     * Reads configuration values from a file
+     *
+     * @param filepath path to config file
+     */
     public ConfigRoomSimulation(String filepath) {
         Properties prop = new Properties();
         try (FileReader reader = new FileReader(filepath)) {

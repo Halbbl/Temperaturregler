@@ -1,18 +1,14 @@
-package fanheater.src.manager;
+package manager;
 import config.Components;
 import config.Settings;
 import config.Simulations;
-import fanheater.src.heater.Heater;
-import fanheater.src.heater.HeaterLevel;
-import fanheater.src.heater.HeaterStatus;
-import fanheater.src.sensor.InternalTemperatureSensor;
-import fanheater.src.sensor.RoomTemperatureSensor;
-import fanheater.src.simulation.FanHeaterTemperatureSimulation;
-import fanheater.src.simulation.RoomTemperatureSimulation;
-import fanheater.src.manager.StatusManager;
-import fanheater.src.manager.LevelManager;
-import manager.SettingsManager;
-import manager.TimerManager;
+import heater.Heater;
+import heater.HeaterLevel;
+import heater.HeaterStatus;
+import sensor.InternalTemperatureSensor;
+import sensor.RoomTemperatureSensor;
+import simulation.FanHeaterTemperatureSimulation;
+import simulation.RoomTemperatureSimulation;
 import sensor.TimeSensor;
 import simulation.TimeSimulation;
 
@@ -96,7 +92,7 @@ public class ComponentsManager {
     }
 
     private void updateSimulations(){
-        roomTemperatureSimulation.updateTemperature(heater.getCurrentLevel(), isOn());
+        roomTemperatureSimulation.updateTemperature(getHeaterLevel(), isOn());
         fanHeaterTemperatureSimulation.updateTemperature(heater.getCurrentLevel());
         timeSimulation.updateTime();
     }
@@ -151,7 +147,7 @@ public class ComponentsManager {
     private void checkForStatus(){
         levelManager.updateLevel(getCurrentRoomTemperature(), getTargetTemperature(), overheated, windowOpenDetected, energySaving);
         heater.setCurrentLevel(levelManager.getCurrentLevel());
-        statusManager.updateStatus(getHeaterLevel(), overheated, windowOpenDetected);
+        statusManager.updateStatus(getHeaterLevel(), overheated, windowOpenDetected, isOn());
     }
 
     private void checkForOverheating(){
@@ -166,6 +162,10 @@ public class ComponentsManager {
         if (overheated && getCurrentDeviceTemperature() < MAX_INTERNAL_TEMPERATURE - PUFFER_DEVICE_TEMPERATURE) {
             overheated = false;
         }
+    }
+
+    public boolean isOverheated(){
+        return overheated;
     }
 
     private void activateEnergySaving(){
@@ -221,18 +221,7 @@ public class ComponentsManager {
 
     //Timer
     public String getTime(){
-        String time = "";
-        if (getHours() < 10){
-            time += "0" +  getHours();
-        } else {
-            time += getHours();
-        }
-        if (getMinutes() < 10){
-            time += ":0" +  getMinutes();
-        }  else {
-            time += ":" + getMinutes();
-        }
-        return time;
+        return String.format("%02d:%02d", getHours(), getMinutes());
     }
 
     private int getMinutes(){

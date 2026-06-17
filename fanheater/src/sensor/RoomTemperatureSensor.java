@@ -1,5 +1,5 @@
-package fanheater.src.sensor;
-import fanheater.src.simulation.RoomTemperatureSimulation;
+package sensor;
+import simulation.RoomTemperatureSimulation;
 
 /**
  * Sensor for tracking the current room temperature

@@ -1,4 +1,4 @@
-package fanheater.src.heater;
+package heater;
 
 /**
  * Different heating levels for the heater

@@ -1,6 +1,6 @@
-package fanheater.src.manager;
+package manager;
 
-import fanheater.src.heater.HeaterLevel;
+import heater.HeaterLevel;
 
 /**
  * Manager fo heating level

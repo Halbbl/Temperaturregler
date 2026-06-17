@@ -1,4 +1,4 @@
-package fanheater.src.heater;
+package heater;
 
 /**
  * Heater class for heating the room

@@ -1,15 +1,13 @@
-package fanheater.src;
 import config.*;
-import fanheater.src.heater.Heater;
-import fanheater.src.manager.ComponentsManager;
-import fanheater.src.sensor.InternalTemperatureSensor;
-import fanheater.src.sensor.RoomTemperatureSensor;
-import fanheater.src.simulation.FanHeaterTemperatureSimulation;
-import fanheater.src.simulation.RoomTemperatureSimulation;
-import fanheater.src.ui.FanHeaterUI;
+import heater.Heater;
+import manager.ComponentsManager;
+import sensor.InternalTemperatureSensor;
+import sensor.RoomTemperatureSensor;
+import simulation.FanHeaterTemperatureSimulation;
+import simulation.RoomTemperatureSimulation;
 import sensor.TimeSensor;
 import simulation.TimeSimulation;
-import ui.NewUI;
+import ui.UI;
 
 /**
  * Main class for starting the fan heater
@@ -23,18 +21,19 @@ public class Main {
     public static void main(String[] args) {
 
         final int UPDATE_INTERVAL_MS = 1000;
+        final String userDir = System.getProperty("user.dir");
 
         //configs
-        String settingsPath = System.getProperty("user.dir") + "/fanheater/src/config/settings.properties";
+        String settingsPath = userDir + "/fanheater/src/config/settings.properties";
         Settings settings = new Settings(settingsPath);
 
-        String configInternalPath = System.getProperty("user.dir") + "/fanheater/src/config/configInternalSimulation.properties";
+        String configInternalPath = userDir + "/fanheater/src/config/configInternalSimulation.properties";
         ConfigInternalSimulation configInternalSimulation = new ConfigInternalSimulation(configInternalPath);
 
-        String configRoomPath = System.getProperty("user.dir") + "/fanheater/src/config/configRoomSimulation.properties";
+        String configRoomPath = userDir + "/fanheater/src/config/configRoomSimulation.properties";
         ConfigRoomSimulation configRoomSimulation = new ConfigRoomSimulation(configRoomPath);
 
-        String configTimePath = System.getProperty("user.dir") + "/fanheater/src/config/configTime.properties";
+        String configTimePath = userDir + "/fanheater/src/config/configTime.properties";
         ConfigTime configTime = new ConfigTime(configTimePath);
 
 
@@ -61,9 +60,7 @@ public class Main {
 
         componentsManager = new ComponentsManager(components, simulations, settings);
 
-        new FanHeaterUI(componentsManager);
-
-        new NewUI(componentsManager);
+        new UI(componentsManager);
 
         while (true) {
             componentsManager.update();

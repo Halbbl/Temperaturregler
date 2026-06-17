@@ -40,11 +40,11 @@ Req 2.12: Anzeigen ob Energiesparmodus aktiv ist oder nicht <br>
 
 **Ziel:**
 
-Erweiterung der Heizlogik um realistische Heizstufen
-Einführung von Sicherheitsmechanismen (Überhitzungsschutz)
-Simulation von Umweltfaktoren (Fenster offen)
-Verbesserung der Systemstabilität und Fehlerbehandlung
-Erweiterung der Benutzeroberfläche um neue Steuerungsmöglichkeiten
+- Erweiterung der Heizlogik um realistische Heizstufen
+- Einführung von Sicherheitsmechanismen (Überhitzungsschutz)
+- Simulation von Umweltfaktoren (Fenster offen)
+- Verbesserung der Systemstabilität und Fehlerbehandlung
+- Erweiterung der Benutzeroberfläche um neue Steuerungsmöglichkeiten
 
 ---
 

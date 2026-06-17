@@ -1,7 +1,7 @@
-package fanheater.src.manager;
+package manager;
 
-import fanheater.src.heater.HeaterLevel;
-import fanheater.src.heater.HeaterStatus;
+import heater.HeaterStatus;
+import heater.HeaterLevel;
 
 /**
  * Manager for heater status
@@ -9,14 +9,12 @@ import fanheater.src.heater.HeaterStatus;
 public class StatusManager {
 
     private HeaterStatus currentStatus;
-    private HeaterStatus lastStatus;
 
     /**
      * Constructor of status manager
      */
     public  StatusManager(){
         currentStatus = HeaterStatus.OFF;
-        lastStatus = HeaterStatus.OFF;
     }
 
     /**
@@ -32,23 +30,23 @@ public class StatusManager {
      * @param heaterLevel current level of heating
      * @param overheated overheated or not
      * @param windowOpen is window open
+     * @param isOn heater is on
      */
-    public void updateStatus(HeaterLevel heaterLevel, boolean overheated, boolean windowOpen){
-        if (!windowOpen){
-            if (overheated && !currentStatus.equals(HeaterStatus.OVERHEATED)){
-                lastStatus = currentStatus;
-                currentStatus = HeaterStatus.OVERHEATED;
-            } else if (!heaterLevel.equals(HeaterLevel.OFF) && !currentStatus.equals(HeaterStatus.HEATING)){
-                lastStatus = currentStatus;
-                currentStatus = HeaterStatus.HEATING;
-            } else if (heaterLevel.equals(HeaterLevel.OFF) && !currentStatus.equals(HeaterStatus.OFF) && !overheated){
-                lastStatus = currentStatus;
-                currentStatus = HeaterStatus.STANDBY;
-            }
+    public void updateStatus(HeaterLevel heaterLevel, boolean overheated, boolean windowOpen, boolean isOn){
+        if (!isOn){
+            currentStatus = HeaterStatus.OFF;
         } else {
-            lastStatus = currentStatus;
-            currentStatus = HeaterStatus.WINDOW_OPEN;
+            if (!windowOpen){
+                if (overheated && !currentStatus.equals(HeaterStatus.OVERHEATED)){
+                    currentStatus = HeaterStatus.OVERHEATED;
+                } else if (!heaterLevel.equals(HeaterLevel.OFF) && !currentStatus.equals(HeaterStatus.HEATING)){
+                    currentStatus = HeaterStatus.HEATING;
+                } else if (heaterLevel.equals(HeaterLevel.OFF) && !currentStatus.equals(HeaterStatus.OFF) && !overheated){
+                    currentStatus = HeaterStatus.STANDBY;
+                }
+            } else {
+                currentStatus = HeaterStatus.WINDOW_OPEN;
+            }
         }
-
     }
 }

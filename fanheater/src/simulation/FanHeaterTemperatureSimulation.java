@@ -1,7 +1,7 @@
-package fanheater.src.simulation;
+package simulation;
 
 import config.ConfigInternalSimulation;
-import fanheater.src.heater.HeaterLevel;
+import heater.HeaterLevel;
 
 /**
  * Simple device temperature simulator

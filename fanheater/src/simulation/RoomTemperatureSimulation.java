@@ -1,7 +1,7 @@
-package fanheater.src.simulation;
+package simulation;
 
 import config.ConfigRoomSimulation;
-import fanheater.src.heater.HeaterLevel;
+import heater.HeaterLevel;
 
 /**
  * Simple room temperature simulation for testing without the hardware
@@ -31,6 +31,7 @@ public class RoomTemperatureSimulation {
     /**
      * Updates the room temperature depending on if the heater is active or not
      * @param currentLevel level at which the heater is heating
+     * @param on heater turned on
      */
     public void updateTemperature(HeaterLevel currentLevel, boolean on) {
         if (windowOpen && currentRoomTemperature > outsideTemperature) {

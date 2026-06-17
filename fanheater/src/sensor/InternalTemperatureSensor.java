@@ -1,6 +1,6 @@
-package fanheater.src.sensor;
+package sensor;
 
-import fanheater.src.simulation.FanHeaterTemperatureSimulation;
+import simulation.FanHeaterTemperatureSimulation;
 
 /**
  * Sensor inside the device for measuring the device temperature
