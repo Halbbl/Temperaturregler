@@ -22,22 +22,24 @@ das spätere Arbeiten geachtet.
 Req. 1.1: Automatisches aktivieren des Heizlüfters wenn Raumtemperatur max. 1°C kälter ([Quelle](./RechercheErgbnisse.md)) ist als gewünschte Temperatur  <br>
 Req. 1.2: Automatisches deaktivieren des Heizlüfters bei erreichen der gewünschten Temperatur <br>
 Req. 1.3: Halten der gewünschten Temperatur mit Schwankungen bis max. 1°C ([Quelle](./RechercheErgbnisse.md)) <br>
-Req. 1.4: Strickte Trennung der zentralen Logikkomponente vom restlichen Code
+Req. 1.4: Temperatur Simulation sollte Temperatur hoch bzw. runter gehen lassen <br>
+Req. 1.5: Temperatursimulation sollte Grenzen (max, min) nicht überschreiten <br>
+Req. 1.6: Strickte Trennung der zentralen Logikkomponente vom restlichen Code <br>
 
 
 **Benutzeroberfläche:**
 
-Req. 1.5: Anzeige der aktuellen Raumtemperatur <br>
-Req. 1.6: Möglichkeit zum ändern der gewünschten Temperatur <br>
-Req. 1.7: Ändern der Benutzeroberfläche bei Interaktion des Nutzers <br>
-Req. 1.8: Intuitive Benutzeroberfläche <br>
-Req. 1.9: Abfangen von nicht genehmigten Input Variablen <br>
+Req. 1.7: Anzeige der aktuellen Raumtemperatur <br>
+Req. 1.8: Möglichkeit zum ändern der gewünschten Temperatur <br>
+Req. 1.9: Ändern der Benutzeroberfläche bei Interaktion des Nutzers <br>
+Req. 1.10: Intuitive Benutzeroberfläche <br>
+Req. 1.11: Abfangen von nicht genehmigten Input Variablen <br>
 
 ---
 
 ### Iteration Details
 
-**Zeitraum:** 08.05.2026 - ???
+**Zeitraum:** 08.05.2026 - 23.05.2026
 
 **Ziel:** 
 
@@ -133,37 +135,31 @@ Durch die Kombination aus vorheriger Planungsskizze und automatisch generiertem 
 sichergestellt werden, dass die entworfene Architektur während der Implementierung eingehalten und 
 gleichzeitig nachvollziehbar dokumentiert wurde.
 
-### 5. Testing
 
-Req. 1.1 bis 1.3: </br>
-Das Testen der automatischen Aktivierung, Deaktivierung sowie des Haltens der Temperature wurde über 
-verschiedene und mehrfache Eingaben von Temperaturen getestet. Hierfür wurden sowohl höhere als auch
-niedrigere Temperaturen als die initiale Temperatur verwendet. Dabei wurde darauf geachtet, dass sich 
-die simulierte Temperatur immer der gewünschten annähert. </br>
-Insgesamt wurden für diesen Test ca. 30 Eingaben in 5 verschiedenen Instanzen getätigt.
+### 5. Review
 
-Req. 1.5 bis 1.7: </br>
-Um das Anzeigen der aktuellen Temperatur, die Eingabe des Nutzers und das Ändern der UI zu testen wurden
-die für den ersten Test genannten Eingaben über die UI durchgeführt. Dabei wurde darauf geachtet, dass
-der "Temperatur ändern" sowie der "Speichern" Knopf funktionieren und das Eingabefeld mit Tastatur sowie 
-mit dem angezeigten Keypad funktioniert. </br>
-Hierfür wurden 15 Eingaben mit der Tastatur und 15 mit dem Touchpad gemacht, wobei jede Zahl mindestens
-einmal verwendet wurde.
+**Was lief gut?** <br>
+Die Implementierung der grundlegenden Logik sowie der verschiedenen Schnittstellen verlief insgesamt reibungslos 
+und ohne größere Probleme. Besonders die Umsetzung der Kernfunktionen konnte schnell realisiert werden, da die 
+einzelnen Komponenten klar voneinander getrennt waren. Auch die Kommunikation zwischen den verschiedenen Klassen 
+funktionierte nach der Anpassung der Struktur zuverlässig. Dadurch konnte die Anwendung Schritt für Schritt 
+erweitert und getestet werden.
 
-Req 1.9: </br>
-Das Abfangen nicht genehmigter Eingaben wie Buchstaben oder negative Zahlen wurde durch das gezielte Eingeben
-dieser getestet. Hierfür wurde versucht, auf der Tastatur Wörter oder Zahlen kleiner 0 einzugeben. Da dies 
-sofort von einem KeyListener abgefangen wird, wurden diese Eingaben nicht einmal im Input Feld angezeigt.
-Die Eingabe auf dem Keypad wurde dadurch verhindert, dass darauf nur valide Zahlen angezeigt werden. </br>
+**Was lief nicht so gut?** <br> 
+Zu Beginn des Projekts musste der gesamte Code nahezu vollständig umgeschrieben werden, da die ursprüngliche 
+Struktur der Anwendung nicht ausreichend durchdacht war. Die Logik wurde auf mehrere Klassen verteilt, wodurch 
+schnell Unübersichtlichkeit entstand. Zwar war die Idee eines zentralen Managers bereits vorhanden, allerdings 
+wurde dieser Ansatz nicht konsequent genug umgesetzt. Dadurch kam es zu Problemen bei der Kommunikation zwischen 
+den einzelnen Komponenten. <br>
+Zusätzlich wurde der Manager anfangs als oberste Instanz gewählt. Während der weiteren Entwicklung stellte sich 
+jedoch heraus, dass diese Struktur die Implementierung unnötig kompliziert machte. Aus diesem Grund mussten sowohl 
+der Manager als auch die UI-Klasse teilweise überarbeitet und neu strukturiert werden. Dies führte zu zusätzlichem 
+Zeitaufwand, half jedoch dabei, die Architektur der Anwendung besser zu organisieren.
 
+**Lessons learned:** <br>
+Durch das Projekt wurde deutlich, wie wichtig eine gute Planung der Klassenstruktur bereits vor Beginn der 
+eigentlichen Implementierung ist. Eine klar definierte Architektur hätte viele spätere Anpassungen und 
+Umstrukturierungen vermeiden können. Außerdem wurde gelernt, dass Konzepte wie ein zentraler Manager nicht nur 
+geplant, sondern auch konsequent umgesetzt werden müssen, damit die Anwendung langfristig übersichtlich und wartbar 
+bleibt.
 
-Weitere Tests:
-
-
-### 6. Review
-
-**Was lief gut?**
-
-**Was lief nicht so gut?**
-
-**Lessions learned:**

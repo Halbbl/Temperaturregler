@@ -32,10 +32,16 @@ public class TemperatureSimulation {
      * @param isHeating indicates if the heater is active
      */
     public void updateTemperature(boolean isHeating) {
-        if (isHeating && currentRoomTemperature < maxTemperature ) {
+        if (isHeating && currentRoomTemperature < maxTemperature) {
             currentRoomTemperature += temperatureIncreaseRate;
+            if(currentRoomTemperature > maxTemperature) {
+                currentRoomTemperature = maxTemperature;
+            }
         } else if (!isHeating && currentRoomTemperature > minTemperature) {
             currentRoomTemperature -= temperatureDecreaseRate;
+            if (currentRoomTemperature < minTemperature) {
+                currentRoomTemperature = minTemperature;
+            }
         }
     }
 
