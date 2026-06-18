@@ -6,7 +6,7 @@ import heater.HeaterLevel;
 
 import java.awt.*;
 
-public class UI {
+public class FanHeaterUI {
 
     private final ComponentsManager componentsManager;
 
@@ -78,7 +78,7 @@ public class UI {
     private Timer simUpdateTimer;
 
 
-    public UI(ComponentsManager componentsManager) {
+    public FanHeaterUI(ComponentsManager componentsManager) {
         this.componentsManager = componentsManager;
 
         initState();

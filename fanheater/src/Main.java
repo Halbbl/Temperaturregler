@@ -7,7 +7,6 @@ import simulation.FanHeaterTemperatureSimulation;
 import simulation.RoomTemperatureSimulation;
 import sensor.TimeSensor;
 import simulation.TimeSimulation;
-import ui.UI;
 
 /**
  * Main class for starting the fan heater
@@ -60,7 +59,7 @@ public class Main {
 
         componentsManager = new ComponentsManager(components, simulations, settings);
 
-        new UI(componentsManager);
+        new ui.FanHeaterUI(componentsManager);
 
         while (true) {
             componentsManager.update();

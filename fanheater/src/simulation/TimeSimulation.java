@@ -47,12 +47,22 @@ public class TimeSimulation {
      */
     public void updateTime(){
         minute++;
-        if (minute > MINUTES){
+        if (minute >= MINUTES){
             minute = 0;
             hour += 1;
         }
-        if (hour > HOURS){
+        if (hour >= HOURS){
             hour = 0;
         }
+    }
+
+    /**
+     * Setting time
+     * @param minute new minute
+     * @param hour new hour
+     */
+    public void setTime(int hour, int minute){
+        this.minute = minute;
+        this.hour = hour;
     }
 }
