@@ -91,41 +91,8 @@ Dadurch konnte die Wartbarkeit verbessert und die Fehleranfälligkeit reduziert 
 
 ### 8.Testing
 
-**Test 2.1: Req. 2.1 (Heizstufen)** <br>
-Die verschiedenen Heizstufen sowie der ausgeschaltete Zustand wurden durch wiederholtes Umschalten der Heizstufe getestet. Dabei wurde überprüft, ob jede Stufe korrekt gesetzt wird und ob sich die Temperaturentwicklung entsprechend der hinterlegten Heizleistung verändert. <br>
-Es wurde kontrolliert, dass die Stufen OFF, LOW, MEDIUM und HIGH korrekt im System verarbeitet und in der Simulation sichtbar werden. Alle Stufen funktionierten wie erwartet.
-
-**Test 2.2: Req. 2.2 und 2.3 (Überhitzungsschutz)** <br>
-Zur Überprüfung der Überhitzungserkennung wurde die Gerätetemperatur künstlich erhöht, bis der definierte Grenzwert überschritten wurde. Dabei wurde beobachtet, ob das System den Heizlüfter automatisch abschaltet. <br>
-Nach Erreichen der kritischen Temperatur wurde der Heizlüfter korrekt auf OFF gesetzt, wodurch die Überhitzung erfolgreich erkannt und verhindert wurde.
-
-**Test 2.3: Req. 2.4 (Wiederaktivierung nach Abkühlung)** <br>
-Nach einer simulierten Überhitzung wurde die Gerätetemperatur unter den definierten Schwellenwert (inkl. Pufferbereich) gesenkt. Anschließend wurde überprüft, ob das System den Heizlüfter automatisch wieder aktiviert. <br>
-Das System reagierte wie vorgesehen und nahm den Heizbetrieb nach ausreichender Abkühlung wieder auf.
-
-**Test 2.4: Req. 2.5 bis 2.7 (Fenstersimulation und Erkennung)** <br>
-Die Simulation eines offenen Fensters wurde durch Betätigung der vorgesehenen UI-Funktion (Taste „F“) getestet. Dabei wurde überprüft, ob die Raumtemperatur schneller sinkt und ob der Zustand korrekt im System reflektiert wird. <br>
-Zusätzlich wurde getestet, ob ein rapider Temperaturabfall korrekt erkannt wird. In allen Fällen wurde das offene Fenster zuverlässig erkannt und das System reagierte durch Abschalten bzw. Anpassung des Heizverhaltens.
-
-**Test 2.5: Req. 2.8 (Energiesparmodus)** <br>
-Der Energiesparmodus wurde mehrfach aktiviert und deaktiviert, um zu überprüfen, ob die maximale Heizstufe korrekt auf MEDIUM begrenzt wird. Dabei wurde getestet, ob höhere Heizstufen im aktiven Modus verhindert werden. <br>
-Die Einschränkung wurde korrekt umgesetzt und das System verhielt sich entsprechend der Spezifikation.
-
-**Test 2.6: Req. 2.9 und 2.10 (Systemstatus)** <br>
-Zur Überprüfung der Statusanzeige wurde das System in verschiedenen Zuständen (Heizen, Aus, Überhitzung, Fenster offen, Energiesparmodus) betrieben. <br>
-Dabei wurde kontrolliert, ob der angezeigte Status in der Benutzeroberfläche korrekt mit dem internen Zustand des Systems übereinstimmt. Alle Status wurden korrekt und verständlich dargestellt.
-
-**Test 2.7: Req. 2.11 und 2.12 (UI Energiesparmodus)** <br>
-Der Button zur Aktivierung des Energiesparmodus wurde mehrfach betätigt. Dabei wurde überprüft, ob der Modus zuverlässig zwischen aktiv und inaktiv wechselt und ob die Anzeige in der Benutzeroberfläche korrekt aktualisiert wird. <br>
-Die visuelle Rückmeldung funktionierte fehlerfrei und zeigte den aktuellen Zustand des Energiesparmodus korrekt an.
+Zur Übeprüfung der korrekten Funktionalität wurden einige Unit, Usability und Black-Box Tests durchgeführt. Alle sind unter `TestReport2` zu finden.
 
 ### 6. Review
 
-**Was lief gut?** <br>
-Die Erweiterung der Heizlogik um verschiedene Heizstufen sowie die Einführung der Gerätetemperatur verlief strukturiert und funktional erfolgreich. Besonders die Simulation des physikalischen Verhaltens konnte deutlich realistischer gestaltet werden. Auch die Integration neuer UI-Elemente wie dem Energiesparmodus funktionierte ohne größere Probleme. <br>
-
-**Was lief nicht so gut?** <br>
-Während der Implementierung der Fenstererkennung kam es zunächst zu logischen Fehlern, da simulierte und erkannte Zustände nicht klar voneinander getrennt waren. Dies führte zu inkonsistentem Verhalten im System. Zusätzlich verursachten Floating-Point-Ungenauigkeiten zunächst unzuverlässige Temperaturwerte, was eine nachträgliche Anpassung der Berechnung erforderlich machte. <br>
-
-**Lessons learned:** <br>
-Es wurde deutlich, dass Simulationen physikalischer Systeme eine klare Trennung zwischen „echten Zuständen“ und „abgeleiteten Zuständen“ benötigen. Außerdem zeigte sich, dass selbst kleine Ungenauigkeiten bei Gleitkommazahlen erhebliche Auswirkungen auf das Systemverhalten haben können. Eine saubere Architektur sowie frühzeitige Definition von Zuständen und Verantwortlichkeiten ist entscheidend für stabile Simulationen.
+Zuletzt wurde eine Review mit lessons learned aus der Iteration erstellt. Diese ist unter `Retrospective2` zu finden.

@@ -43,4 +43,12 @@ public class FanHeaterTemperatureSimulation {
             currentTemperature += currentLevel.getFanHeaterTemperatureIncreaseRate();
         }
     }
+
+    /**
+     * Setting new temperature
+     * @param temperature new temperature
+     */
+    public void setCurrentTemperature(double temperature) {
+        currentTemperature = temperature;
+    }
 }

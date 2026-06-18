@@ -45,7 +45,7 @@ Link lol
 
 ## Iterationen
 
-### [Iteration1](Iteration1/Iteration1.md): <br>
+### Iteration1: <br>
 In der ersten Iteration des Projekts wurden die grundlegende Architektur, die ersten Requirements sowie 
 die zentralen Klassen der Anwendung entwickelt. Ziel war es, eine stabile Basis für die weitere Entwicklung 
 des Heizlüftersystems zu schaffen. Dabei wurden Funktionen wie die Messung der Raumtemperatur, die Eingabe 
@@ -62,7 +62,7 @@ Benutzeroberfläche sowie die Behandlung ungültiger Eingaben zu überprüfen. D
 grundlegenden Funktionen zuverlässig arbeiten. Gleichzeitig wurde deutlich, dass eine bessere Planung der 
 Klassenstruktur viele spätere Umstrukturierungen vereinfacht hätte.
 
-### [Iteration2](Iteration2/Iteration2.md): <br>
+### Iteration2 <br>
 
 In der zweiten Iteration des Projekts wurde das bestehende Heizlüftersystem um mehrere Funktionen erweitert, die eine realistischere Simulation und eine höhere Systemsicherheit ermöglichen. Der Schwerpunkt lag auf der Einführung verschiedener Heizstufen, der Simulation einer internen Gerätetemperatur, dem Überhitzungsschutz sowie der Erkennung eines geöffneten Fensters.
 

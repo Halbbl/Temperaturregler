@@ -61,6 +61,14 @@ public class RoomTemperatureSimulation {
     }
 
     /**
+     * Setting new temperature
+     * @param temperature new temperature
+     */
+    public void setCurrentRoomTemperature(double temperature) {
+        currentRoomTemperature = temperature;
+    }
+
+    /**
      * Sets window open
      * @param windowOpen if window is open
      */
