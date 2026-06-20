@@ -2,8 +2,6 @@
 
 Software Engineering Projekt SS 26
 
-Franziska Nachtmann (22410992), SD-B
-
 ### Persönliches Github Repository
 
 https://github.com/Halbbl/Temperaturregler
