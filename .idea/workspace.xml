@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea07c8f4-1c68-421b-8db6-8cab0dd13301" name="Changes" comment="transferred se repository" />
+    <list default="true" id="ea07c8f4-1c68-421b-8db6-8cab0dd13301" name="Changes" comment="transferred se repository">
+      <change beforePath="$PROJECT_DIR$/Architektur3.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iteration2/Architektur2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iteration2/Design2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iteration2/Iteration2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Iteration3.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Retrospective3.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestReport3.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Traceability matrix/TraceabilityMatrix.md" beforeDir="false" afterPath="$PROJECT_DIR$/Traceability matrix/TraceabilityMatrix.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fanheater/Design3.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fanheater/references/umlDiagram2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fanheater/references/umlDiagram3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fanheater/test/ComponentsManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fanheater/test/SettingsManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fanheater/test/TimeSimulationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fanheater/test/TimerManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fanheater/test/settingsTest.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fanheater/test/timersTest.properties" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -212,7 +230,7 @@
       <workItem from="1781783140642" duration="4585000" />
       <workItem from="1781866286293" duration="3785000" />
       <workItem from="1781883148212" duration="49000" />
-      <workItem from="1781939841211" duration="3356000" />
+      <workItem from="1781939841211" duration="3769000" />
     </task>
     <task id="LOCAL-00001" summary="more">
       <option name="closed" value="true" />
@@ -342,7 +360,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781942755249</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="transferred se repository">
+      <option name="closed" value="true" />
+      <created>1781944663446</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1781944663446</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,17 +398,6 @@
     <MESSAGE value="transferred se repository" />
     <option name="LAST_COMMIT_MESSAGE" value="transferred se repository" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>71</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
