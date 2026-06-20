@@ -4,7 +4,7 @@ Software Engineering Projekt SS 26
 
 ### Persönliches Github Repository
 
-https://github.com/Halbbl/Temperaturregler
+https://github.com/Halbbl/Temperaturregler/tree/master
 
 ### Funktionalitäten
 
