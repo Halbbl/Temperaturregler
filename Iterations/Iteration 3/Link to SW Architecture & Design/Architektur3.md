@@ -38,4 +38,4 @@ Hinsichtlich der Architektur hat sich auch in der dritten Iteration nichts geän
 | Test-Framework           | JUnit 4/5          | Standard für Java, einfach, erweiterbar                          |
 | KI¹                      | ChatGPT + Claude   | Gute Formulierungen und Quellen                                  |
 
-¹KI wurde im Rahmen dieses Projekts ausschließlich für die Formulierung der Dokumentation, der Javadoc Kommentare und für das Suchen von Quellen benutzt
+¹KI wurde im Rahmen dieses Projekts ausschließlich für die Formulierung der Dokumentation, der Javadoc Kommentare, das übersichtliche Gestalten des Codes und die UI benutzt
