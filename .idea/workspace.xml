@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ea07c8f4-1c68-421b-8db6-8cab0dd13301" name="Changes" comment="transferred se repository" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Iteration3" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Halbbl&quot;
+  }
+}</component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="f2d13014-3c61-4ac4-b4dd-26a81ad1c8c9" />
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Halbbl/Temperaturregler.git&quot;,
+    &quot;accountId&quot;: &quot;f2d13014-3c61-4ac4-b4dd-26a81ad1c8c9&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3F4xDRdjF2a4zr1Gdqqq3PbvfLX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Fanheater.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Git.Working.Tree.Tab.closed.by.user": "closed",
+    "JUnit.ComponentsManagerTest.executor": "Run",
+    "JUnit.FanHeaterTemperatureSimulationTest.executor": "Run",
+    "JUnit.HeaterTest.executor": "Run",
+    "JUnit.SettingsManagerTest.executor": "Run",
+    "JUnit.TemperatureSimulationTest.executor": "Run",
+    "JUnit.TimeSimulationTest.executor": "Run",
+    "JUnit.TimerManagerTest.executor": "Run",
+    "JUnit.fanheater.test in Temperaturregler.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "git.auto.fetch.suggestion.counter": "2",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/franzi/IdeaProjects/Fanheater",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/home/franzi/IdeaProjects/Fanheater/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/fanheater/references" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/Iteration1" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Fanheater" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="fanheater.src.main.Main" />
+      <module name="Temperaturregler" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ComponentsManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Temperaturregler" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fanheater.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fanheater.test" />
+      <option name="MAIN_CLASS_NAME" value="fanheater.test.ComponentsManagerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HeaterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Temperaturregler" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fanheater.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fanheater.test" />
+      <option name="MAIN_CLASS_NAME" value="fanheater.test.HeaterTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TemperatureSimulationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Temperaturregler" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fanheater.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fanheater.test" />
+      <option name="MAIN_CLASS_NAME" value="fanheater.test.TemperatureSimulationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="fanheater.test in Temperaturregler" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Temperaturregler" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fanheater.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fanheater.test" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Temperaturregler" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Temperaturregler" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TemperatureSimulationTest" />
+        <item itemvalue="JUnit.HeaterTest" />
+        <item itemvalue="JUnit.fanheater.test in Temperaturregler" />
+        <item itemvalue="JUnit.ComponentsManagerTest" />
+        <item itemvalue="JUnit.TemperatureSimulationTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.24374.151" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ea07c8f4-1c68-421b-8db6-8cab0dd13301" name="Changes" comment="" />
+      <created>1781348023100</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1781348023100</updated>
+      <workItem from="1781348024315" duration="8903000" />
+      <workItem from="1781517379100" duration="6185000" />
+      <workItem from="1781531351114" duration="6104000" />
+      <workItem from="1781598314890" duration="6239000" />
+      <workItem from="1781611405627" duration="84000" />
+      <workItem from="1781626491751" duration="24134000" />
+      <workItem from="1781682198344" duration="10647000" />
+      <workItem from="1781696096514" duration="495000" />
+      <workItem from="1781697378861" duration="1588000" />
+      <workItem from="1781703616763" duration="13349000" />
+      <workItem from="1781722041887" duration="13453000" />
+      <workItem from="1781767272615" duration="13795000" />
+      <workItem from="1781783140642" duration="4585000" />
+      <workItem from="1781866286293" duration="3785000" />
+      <workItem from="1781883148212" duration="49000" />
+      <workItem from="1781939841211" duration="3356000" />
+    </task>
+    <task id="LOCAL-00001" summary="more">
+      <option name="closed" value="true" />
+      <created>1781354812997</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1781354812997</updated>
+    </task>
+    <task id="LOCAL-00002" summary="time sim">
+      <option name="closed" value="true" />
+      <created>1781357120693</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1781357120693</updated>
+    </task>
+    <task id="LOCAL-00003" summary="timer implemented">
+      <option name="closed" value="true" />
+      <created>1781532993931</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1781532993931</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add and remove timer">
+      <option name="closed" value="true" />
+      <created>1781537456380</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1781537456380</updated>
+    </task>
+    <task id="LOCAL-00005" summary="new ui">
+      <option name="closed" value="true" />
+      <created>1781646130962</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1781646130962</updated>
+    </task>
+    <task id="LOCAL-00006" summary="new ui">
+      <option name="closed" value="true" />
+      <created>1781646906465</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1781646906465</updated>
+    </task>
+    <task id="LOCAL-00007" summary="new ui">
+      <option name="closed" value="true" />
+      <created>1781649880751</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1781649880751</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fixed imports + documentation">
+      <option name="closed" value="true" />
+      <created>1781712508263</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1781712508263</updated>
+    </task>
+    <task id="LOCAL-00009" summary="updated documentation + test cases">
+      <option name="closed" value="true" />
+      <created>1781731077089</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1781731077089</updated>
+    </task>
+    <task id="LOCAL-00010" summary="updated documentation + test cases">
+      <option name="closed" value="true" />
+      <created>1781731790144</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1781731790144</updated>
+    </task>
+    <task id="LOCAL-00011" summary="updated documentation + test cases">
+      <option name="closed" value="true" />
+      <created>1781771157621</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1781771157622</updated>
+    </task>
+    <task id="LOCAL-00012" summary="updated documentation + test cases">
+      <option name="closed" value="true" />
+      <created>1781780591161</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1781780591161</updated>
+    </task>
+    <task id="LOCAL-00013" summary="updated documentation + test cases">
+      <option name="closed" value="true" />
+      <created>1781780604520</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1781780604520</updated>
+    </task>
+    <task id="LOCAL-00014" summary="readme">
+      <option name="closed" value="true" />
+      <created>1781868841764</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1781868841765</updated>
+    </task>
+    <task id="LOCAL-00015" summary="transferred final state from se repository">
+      <option name="closed" value="true" />
+      <created>1781942634063</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1781942634063</updated>
+    </task>
+    <task id="LOCAL-00016" summary="transferred final state from se repository">
+      <option name="closed" value="true" />
+      <created>1781942755249</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1781942755249</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="more" />
+    <MESSAGE value="time sim" />
+    <MESSAGE value="timer implemented" />
+    <MESSAGE value="add and remove timer" />
+    <MESSAGE value="new ui" />
+    <MESSAGE value="fixed imports + documentation" />
+    <MESSAGE value="updated documentation + test cases" />
+    <MESSAGE value="readme" />
+    <MESSAGE value="transferred final state from se repository" />
+    <MESSAGE value="transferred se repository" />
+    <option name="LAST_COMMIT_MESSAGE" value="transferred se repository" />
+    <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
